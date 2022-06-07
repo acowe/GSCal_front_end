@@ -1,0 +1,266 @@
+@font-face {
+    font-family: 'Anonymous Pro'; /*a name to be used later*/
+    src: url('http://domain.com/fonts/font.ttf'); /*URL to font*/
+}
+
+.gscal{
+    height: 100vh;
+    font-family: 'Anonymous Pro',"Courier New";
+    background-color: #07A2A1;
+}
+
+.header{
+    background-color: #47C6C4;
+    font-size: large;
+}
+
+.h_other_text{
+    font-weight: 500;
+    color: #057a77;
+}
+
+.contents{
+    height: 100%;
+    background-color: #07A2A1;
+}
+
+.cal_col{
+    background-color: #07A2A1;
+}
+
+.cal_card{
+    max-width: 100%;
+    background-color: white;
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    border-radius: 10px;
+    box-shadow: 15px 15px 20px #057a77;
+
+
+}
+
+.cal_head{
+    text-align: left;
+    padding-left: 1.3rem;
+    padding-top: 2rem;
+    padding-bottom: 0.4rem;
+    background-color: #07A2A1;
+    color: white;
+    border-radius: 10px;
+}
+
+.cal{
+    border-style: solid;
+    border-width: 2px;
+    border-color: #07A2A1;
+
+}
+
+.cal_wk{
+    border-bottom-style: solid;
+    border-width: 2px;
+    border-color: #07A2A1;
+    max-height: 100px;
+    overflow: hidden;
+}
+
+.cal_wk_last{
+    max-height: 100px;
+    overflow: hidden;
+
+}
+
+
+.cal_sun{
+    border-right-style: solid;
+    border-width: 1px;
+    border-color: #07A2A1;
+    aspect-ratio: 1;
+}
+
+.cal_wkday{
+    border-right-style: solid;
+    border-left-style: solid;
+    border-width: 1px;
+    border-color: #07A2A1;
+    aspect-ratio: 1;
+}
+
+.cal_sat{
+    border-left-style: solid;
+    border-width: 1px;
+    border-color: #07A2A1;
+    aspect-ratio: 1;
+}
+
+.cal_content{
+    display: block;
+    height: 100%;
+    max-height: 100px;
+    background-color: white;
+    white-space:nowrap;
+    padding: 0.75rem;
+    overflow: scroll;
+}
+
+.cal_content ul{
+    padding-left: 0rem;
+    list-style: none;
+    max-width: 6.2rem;
+    font-size: smaller;
+}
+
+.cal_content ul li{
+    width: 100%;
+    margin-bottom: 0.25rem;
+    font-size: small;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-top: .25rem;
+    padding-bottom: .25rem;
+    overflow-x: hidden;
+
+}
+
+.to_do_text{
+    overflow-x: scroll;
+
+}
+.cal_key{
+    width: 100%;
+    height: 40px;
+}
+
+.key{
+    width:30%;
+    height: 100%;
+    float: left;
+}
+
+.courses{
+    display: inline;
+    float: right;
+    background-color: white;
+    height: 100%;
+    width: 70%;
+    overflow-x: scroll;
+}
+
+
+.courses ul{
+    height:100%;
+    margin: 0;
+    padding-top: 0.4rem;
+
+}
+
+
+.courses ul li{
+    display: inline;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    font-size: large;
+}
+
+
+
+.course_1{
+    text-align: center;
+    background-color: #07A2A1;
+}
+
+.course_2{
+    text-align: center;
+    background-color: #FF904D;
+}
+
+.course_3{
+    text-align: center;
+    background-color: #47C6C4;
+
+}
+
+.list_col{
+    background-color: #07A2A1;
+}
+
+.task_card{
+    max-width: 100%;
+    height: 60%;
+    background-color: white;
+    padding-top: 1rem;
+    padding-bottom: 2.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    border-radius: 10px;
+    box-shadow: 15px 15px 20px #057a77;
+    text-align: left;
+    overflow-y: hidden;
+
+}
+
+.task_card .task_card_contents{
+    height:100%;
+    overflow-y: scroll;
+}
+
+.task_card_contents::-webkit-scrollbar-track
+{
+    background-color: white;
+}
+
+.task_card_contents::-webkit-scrollbar
+{
+    width: 12px;
+    background-color: #F5F5F5;
+}
+
+.task_card_contents::-webkit-scrollbar-thumb
+{
+
+    border-radius: 10px;
+    background-color: #47C6C4;
+}
+
+
+
+.task_day_entry{
+
+}
+
+.task_day_list{
+    font-size: 23px;
+}
+
+.none_type{
+    list-style: none;
+    font-size: 23px;
+    color: gray;
+}
+
+.dl_button_group{
+    width: 91%;
+    margin-top: 3rem;
+    margin-right: 5rem;
+    height: auto;
+}
+
+.dl_button{
+    width: 70%;
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+    border-radius: 7.5px;
+    font-size: large;
+    font-weight: bold;
+    background-color: #47C6C4;
+    border-style: none;
+}
+
+.cover_up{
+    height: auto;
+    background-color: #057a77;
+}
+
+
