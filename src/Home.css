@@ -12,12 +12,59 @@
 .header{
     background-color: #47C6C4;
     font-size: large;
+    overflow-y: visible;
 }
+
+.btn-light{
+    background-color: white;
+    color: #057a77;
+}
+
+.btn-light:hover{
+    background-color: #f1f1f1;
+    font-weight: 500;
+    color: #05736e;
+}
+
 
 .h_other_text{
     font-weight: 500;
     color: #057a77;
 }
+
+
+
+@media (max-width: 770px) {
+    .h_other_text{
+        display: none;
+    }
+
+    .h_dropdown{
+        background-color: white;
+        color: #07A2A1;
+        border-radius: 5px;
+    }
+
+    .h_title{
+        padding-top: 0.4rem;
+    }
+
+}
+
+@media (min-width: 771px) {
+    .h_other_text{
+        font-weight: 500;
+        color: #057a77;
+    }
+    .h_dropdown{
+        display: none;
+    }
+}
+
+.dropdown-toggle::after {
+    display: none !important;
+}
+
 
 .contents{
     height: 100%;
@@ -38,7 +85,6 @@
     border-radius: 10px;
     box-shadow: 15px 15px 20px #057a77;
 
-
 }
 
 .cal_head{
@@ -51,6 +97,10 @@
     border-radius: 10px;
 }
 
+.container, .container-sm{
+    max-width: 100%;
+}
+
 .cal{
     border-style: solid;
     border-width: 2px;
@@ -58,16 +108,35 @@
 
 }
 
+@media (max-width:576px){
+    .cal_card{
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    .cal_head{
+        padding-left: .75rem;
+        padding-top: 1rem;
+        padding-bottom: 0.2rem;
+        margin-bottom: 0rem;
+        font-size: 2.5rem;
+
+    }
+}
+
 .cal_wk{
     border-bottom-style: solid;
     border-width: 2px;
     border-color: #07A2A1;
     max-height: 100px;
+    min-height: 90px;
     overflow: hidden;
 }
 
 .cal_wk_last{
     max-height: 100px;
+    min-height: 90px;
     overflow: hidden;
 
 }
@@ -94,6 +163,8 @@
     border-color: #07A2A1;
     aspect-ratio: 1;
 }
+
+
 
 .cal_content{
     display: block;
@@ -122,12 +193,32 @@
     padding-bottom: .25rem;
     overflow-x: hidden;
 
+
 }
+
 
 .to_do_text{
     overflow-x: scroll;
+}
+
+@media (max-width: 625px){
+    .cal_content{
+        padding: 0.3rem;
+        overflow: scroll;
+    }
+    .cal_content ul li{
+        padding-left: .5rem;
+        padding-right: .5rem;
+        padding-top: .75rem;
+    }
+
+    .to_do_text{
+        display: none;
+    }
+
 
 }
+
 .cal_key{
     width: 100%;
     height: 40px;
@@ -138,6 +229,28 @@
     height: 100%;
     float: left;
 }
+
+.key_text{
+    padding-top: .4rem;
+}
+
+@media (max-width: 770px){
+    .key_text{
+        padding-top: 0.4rem;
+        font-size: 1.2rem;
+    }
+}
+@media (max-width: 625px){
+    .key{
+        max-width: 100px;
+    }
+    .key_text{
+        padding-top: 0;
+        padding-left: .5rem;
+        font-size: 1.2rem;
+    }
+}
+
 
 .courses{
     display: inline;
@@ -182,13 +295,24 @@
 
 }
 
+
+
 .list_col{
     background-color: #07A2A1;
 }
 
+
+@media (min-width: 992px) {
+    .cal_col, .list_col{
+        max-height: 85%;
+    }
+}
+
+
+
 .task_card{
     max-width: 100%;
-    height: 60%;
+    height: 80%;
     background-color: white;
     padding-top: 1rem;
     padding-bottom: 2.5rem;
@@ -198,8 +322,8 @@
     box-shadow: 15px 15px 20px #057a77;
     text-align: left;
     overflow-y: hidden;
-
 }
+
 
 .task_card .task_card_contents{
     height:100%;
@@ -240,14 +364,28 @@
     color: gray;
 }
 
-.dl_button_group{
-    width: 91%;
-    margin-top: 3rem;
-    margin-right: 5rem;
-    height: auto;
+@media (min-width: 992px) {
+    .dl_button_group{
+        width: 91%;
+        margin-top: 3rem;
+        margin-right: 5rem;
+        height: auto;
+    }
 }
 
-.dl_button{
+@media (max-width: 991px) {
+    .dl_button_group{
+        width: 100%;
+        margin-top: 3rem;
+        height: auto;
+    }
+}
+
+
+
+
+
+.btn-primary{
     width: 70%;
     padding-top: .75rem;
     padding-bottom: .75rem;
@@ -258,8 +396,20 @@
     border-style: none;
 }
 
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary{
+    border-color: #41c2c0;
+    background-color: #41c2c0;
+}
+
+
+
+.form-control:focus{
+    border-color: #28a745;
+    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+}
+
 .cover_up{
-    height: auto;
+    height: 50px;
     background-color: #057a77;
 }
 
