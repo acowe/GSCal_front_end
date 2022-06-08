@@ -343,7 +343,7 @@ function Home(){
 
                             </div>
                         </div>
-                        <div className={"dl_button_group"}>
+                        <div className={"mt-3 dl_button_group"}>
                             <button className={"mb-3 shadow-none btn btn-primary"}>download to Google Calendar</button>
                             <button className={"shadow-none btn btn-primary"}>download to Apple Calendar</button>
                         </div>

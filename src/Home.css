@@ -308,8 +308,6 @@
     }
 }
 
-
-
 .task_card{
     max-width: 100%;
     height: 80%;
@@ -343,9 +341,15 @@
 
 .task_card_contents::-webkit-scrollbar-thumb
 {
-
     border-radius: 10px;
     background-color: #47C6C4;
+}
+
+@media (max-width: 400px) {
+    .task_card .task_card_contents{
+        height:100%;
+        overflow-y: hidden;
+    }
 }
 
 
