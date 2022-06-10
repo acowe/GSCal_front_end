@@ -1,5 +1,6 @@
 import {Container, Row, Col, Button, Card, Dropdown} from "react-bootstrap";
 import './Home.css'
+import {useState, useEffect} from "react";
 
 function num_to_month(n){
     switch (n) {
@@ -44,7 +45,7 @@ function num_to_month(n){
     }
 }
 
-function Home(){
+function Home(props){
 
     const current = new Date();
     const date = current.getDate();
@@ -55,17 +56,38 @@ function Home(){
     const month = num_to_month(month_num);
     const year = current.getFullYear();
 
+
+    function display_cal_event(d_id) {
+        const d_elements = document.querySelectorAll("#"+ d_id + ".cal_content ul li"),
+            listLen = d_elements.length;
+        if (listLen > 3) {
+            document.getElementById(d_id).classList.add("many");
+        }
+    }
+
+    useEffect(() =>
+        {
+            let i = 1;
+            for(i;i<8;i++){
+                let idstr = "d"+i;
+                display_cal_event(idstr);
+            }
+        }
+    );
+
+
+
     return (
         <div className={"gsc_div"}>
             <Container fluid className={"gscal"}>
-                <Row className={"py-3 header"}>
-                    <Col xs={2} sm={2} md={3} lg={2}>
+                <Row className={"py-4 header"}>
+                    <Col xs={2} sm={2} md={3} lg={2} className={"h_other"}>
                         <h5 className={"my-0 px-2 h_other_text"}>Hello Student!</h5>
                     </Col>
                     <Col xs={8} sm={8} md={6} lg={8} className={"d-flex justify-content-center align-middle"}>
-                        <h5 className={"my-0 fw-bold text-light h_title"}>gradescope calendar</h5>
+                        <h5 className={"my-0 fs-4 fw-bold text-light h_title"}>gradescope calendar</h5>
                     </Col>
-                    <Col xs={2} sm={2} md={3} lg={2}>
+                    <Col xs={2} sm={2} md={3} lg={2} className={"h_other"}>
                         <button className={"w-75 py-0 btn btn-light btn-block shadow-none border-0 rounded-pill h_other_text"}>
                             sign out
                         </button>
@@ -85,69 +107,101 @@ function Home(){
 
                 <Row className={"contents"}>
                     <Col lg={8} className={"px-0 cal_col"}>
-                        <div className={"mx-md-5 mx-3 my-3 my-md-4 my-lg-5 pb-2 cal_card"}>
+                        <div className={"mx-md-5 mx-3 my-3 my-md-4 mt-lg-4 mb-lg-3 pb-2 cal_card"}>
                             <h1 className={"cal_head"}>{month + " " + year}</h1>
-                            <Container className={"mx-sm-0 mt-2 mt-sm-3 mt-md-4 px-0 cal"}>
-                                <Row className={"mx-0 cal_wk"}>
+                            <Row className={"mx-sm-0 mt-2 mt-sm-3 mt-md-3 px-0 cal_days"}>
+                                <Col style={{width:"14.28%"}} className={"px-0"}>
+                                    Sunday
+                                </Col>
+                                <Col style={{width:"14.28%"}} className={"px-0"}>
+                                    Monday
+                                </Col>
+                                <Col style={{width:"14.28%"}} className={"px-0"}>
+                                    Tuesday
+                                </Col>
+                                <Col style={{width:"14.28%"}} className={"px-0"}>
+                                    Wedsnesday
+                                </Col>
+                                <Col style={{width:"14.28%"}} className={"px-0"}>
+                                    Thursday
+                                </Col>
+                                <Col style={{width:"14.28%"}} className={"px-0"}>
+                                    Friday
+                                </Col>
+                                <Col style={{width:"14.28%"}} className={"px-0"}>
+                                    Saturday
+                                </Col>
+                            </Row>
+                            <Container className={"mx-sm-0 px-0 cal"}>
+                                <Row className={"mx-0 cal_wk_fst"}>
                                     <Col style={{width:"14.28%"}} className={"px-0 cal_sun"}>
-                                        <div className={"cal_content"}></div>
+                                        <div id="d1" className={"cal_content"}></div>
                                     </Col>
                                     <Col style={{width:"14.28%"}} className={"px-0 cal_wkday"}>
-                                        <div className={"cal_content"}>
+                                        <div id="d2" className={"cal_content"}>
                                             <ul>
-                                                <li className={"course_1"}>
-                                                    <div className={"to_do_text"}>Guided Reading #2</div>
-                                                </li>
-                                                <li className={"course_2"}>
-                                                    <div className={"to_do_text"}>HW #1</div>
-                                                </li>
                                                 <li className={"course_3"}>
-                                                    <div className={"to_do_text"}>Recitation #2.1</div>
+                                                    <div className={"to_do_text"}>Homework 6</div>
+                                                </li>
+                                                <li className={"course_1"}>
+                                                    <div className={"to_do_text"}>9.1 Preclass</div>
+                                                </li>
+                                                <li className={"course_1"}>
+                                                    <div className={"to_do_text"}>Quiz 3</div>
+                                                </li>
+                                                <li className={"course_4"}>
+                                                    <div className={"to_do_text"}>Homework #3 Written: rateSeqChange.txt</div>
+                                                </li>
+                                                <li className={"course_4"}>
+                                                    <div className={"to_do_text"}>Homework #3 Code: dist.py</div>
                                                 </li>
                                             </ul>
                                         </div>
                                     </Col>
                                     <Col style={{width:"14.28%"}} className={"px-0 cal_wkday"}>
-                                        <div className={"cal_content"}>
-                                            <ul>
-                                                <li className={"course_1"}>
-                                                    <div className={"to_do_text"}>Homework #2</div>
-                                                </li>
-                                                <li className={"course_3"}>
-                                                    <div className={"to_do_text"}>Recitation #2.2</div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </Col>
-                                    <Col style={{width:"14.28%"}} className={"px-0 cal_wkday"}>
-                                        <div className={"cal_content"} ></div>
-                                    </Col>
-                                    <Col style={{width:"14.28%"}} className={"px-0 cal_wkday"}>
-                                        <div className={"cal_content"} >
-                                            <ul>
-                                                <li className={"course_1"}>
-                                                    <div className={"to_do_text"}>Guided reading #3</div>
-                                                </li>
-                                                <li className={"course_3"}>
-                                                    <div className={"to_do_text"}>Recitation #2.2</div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </Col>
-                                    <Col style={{width:"14.28%"}} className={"px-0 cal_wkday"}>
-                                        <div className={"cal_content"}>
+                                        <div id="d3" className={"cal_content"}>
                                             <ul>
                                                 <li className={"course_2"}>
-                                                    <div className={"to_do_text"}>HW #2</div>
+                                                    <div className={"to_do_text"}>Homework 3A</div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </Col>
+                                    <Col style={{width:"14.28%"}} className={"px-0 cal_wkday"}>
+                                        <div id="d4" className={"cal_content"} >
+                                            <ul>
+                                                <li className={"course_1"}>
+                                                    <div className={"to_do_text"}>9.1 Preclass</div>
                                                 </li>
                                                 <li className={"course_1"}>
-                                                    <div className={"to_do_text"}>Homework #3</div>
+                                                    <div className={"to_do_text"}>HW3</div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </Col>
+                                    <Col style={{width:"14.28%"}} className={"px-0 cal_wkday"}>
+                                        <div id="d5" className={"cal_content"} >
+                                            <ul>
+                                                <li className={"course_3"}>
+                                                    <div className={"to_do_text"}>Recitation #5</div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </Col>
+                                    <Col style={{width:"14.28%"}} className={"px-0 cal_wkday"}>
+                                        <div id={"d6"} className={"cal_content"}>
+                                            <ul>
+                                                <li className={"course_1"}>
+                                                    <div className={"to_do_text"}>9.2 Preclass</div>
+                                                </li>
+                                                <li className={"course_2"}>
+                                                    <div className={"to_do_text"}>Homework 3B</div>
                                                 </li>
                                             </ul>
                                         </div>
                                     </Col>
                                     <Col style={{width:"14.28%"}} className={"px-0 cal_sat"}>
-                                        <div className={"cal_content"}></div>
+                                        <div id={"d7"} className={"cal_content"}></div>
                                     </Col>
                                 </Row>
                                 <Row className={"mx-0 cal_wk"}>
@@ -251,104 +305,207 @@ function Home(){
                                     <h4 className={"mb-0 key_text"}>View by class:</h4></div>
                                 <div className={"courses"}>
                                     <ul className={"ps-0"}>
-                                        <li className={"ms-0 px-4 py-2 course_1"}>
-                                            Chem
+                                        <li className={"ms-3 me-3 py-2 course_1"}>
+                                            chem
                                         </li>
-                                        <li className={"px-4 py-2 course_2"}>
-                                            Math
+                                        <li className={"ms-2 me-3 py-2 course_2"}>
+                                            math
                                         </li>
-                                        <li className={"px-4 py-2 course_3"}>
-                                            Phys
+                                        <li className={"ms-2 me-3 py-2 course_3"}>
+                                            phys
                                         </li>
-                                        <li className={"px-4 py-2 course_1"}>
-                                            CSCI
+                                        <li className={"ms-2 me-3 py-2 course_4"}>
+                                            bio
                                         </li>
-                                        <li className={"px-4 py-2 course_2"}>
-                                            Engr
+                                        <li className={"ms-2 me-3 py-2 course_5"}>
+                                            csci
                                         </li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
+                        <button style={{width:"40%"}} className={"shadow-none btn btn-primary"}
+                                onClick={(e) => display_cal_event("d2")}>
+                            download calendar
+                        </button>
                     </Col>
 
-                    <Col lg={4} className={"px-0 pt-lg-5 pt-md-0 list_col"}>
+                    <Col lg={4} className={"px-0 pt-lg-4 pt-md-0 list_col"}>
                         <div className={"ms-lg-0 me-lg-5 mx-md-5 mx-3 pb-2 task_card"}>
                             <div className={"task_card_contents"}>
-                                <div className={"mx-4 mt-3 mb-2 task_day_entry"}>
-                                    <h2>monday, {month_num+"/"+current_wk_start}</h2>
-                                    <ul className={"task_day_list"}>
+                                <div className={"ms-3 me-2 mt-1 mb-2 task_day_entry"}>
+                                    <h2 className={"fs-3"}>monday</h2>
+                                    <ul className={"mb-5 task_day_list"}>
                                         <li>
-                                            chemistry: 11:00am
+                                            <div className={"list_content"}>
+                                                <p className={"my-0"}>HMC Phys 24</p>
+                                                <span className={"float-start"}>
+                                                    Sec 1-8 SP22
+                                                </span>
+                                                <span className={"float-end list_time"}>
+                                                    8:00 AM
+                                                </span>
+                                            </div>
                                         </li>
                                         <li>
-                                            math: 10:00pm
+                                            <div className={"list_content"}>
+                                                <p className={"my-0"}>HMC Chemistry</p>
+                                                <span className={"float-start"}>
+                                                    23B SP22
+                                                </span>
+                                                <span className={"float-end list_time"}>
+                                                    10:00 AM
+                                                </span>
+                                            </div>
                                         </li>
                                         <li>
-                                            physics: 8:00am
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div className={"mx-4 mb-2 task_day_entry"}>
-                                    <h2>tuesday, {month_num+"/"+(current_wk_start+1)}</h2>
-                                    <ul className={"task_day_list"}>
-                                        <li>
-                                            chemistry: 5:00pm
-                                        </li>
-                                        <li>
-                                            physics: 11:59pm
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div className={"mx-4 mb-2 task_day_entry"}>
-                                    <h2>wednesday, {month_num+"/"+(current_wk_start+2)}</h2>
-                                    <ul className={"none_type"}>
-                                        <li>none!</li>
-                                    </ul>
-                                </div>
-                                <div className={"mx-4 mb-2 task_day_entry"}>
-                                    <h2>thursday, {month_num+"/"+(current_wk_start+3)}</h2>
-                                    <ul className={"task_day_list"}>
-                                        <li>
-                                            chemistry: 5:00pm
+                                            <div className={"list_content"}>
+                                                <p className={"my-0"}>HMC Chemistry</p>
+                                                <span className={"float-start"}>
+                                                    23B SP22
+                                                </span>
+                                                <span className={"float-end list_time"}>
+                                                    10:00 AM
+                                                </span>
+                                            </div>
                                         </li>
                                         <li>
-                                            physics: 11:59pm
+                                            <div className={"list_content"}>
+                                                <p className={"my-0"}>Bio 52</p>
+                                                <span className={"float-start"}>
+                                                </span>
+                                                <span className={"float-end list_time"}>
+                                                    11:59 PM
+                                                </span>
+                                            </div>
                                         </li>
-                                    </ul>
-                                </div>
-                                <div className={"mx-4 mb-2 task_day_entry"}>
-                                    <h2>friday, {month_num+"/"+(current_wk_start+4)}</h2>
-                                    <ul className={"task_day_list"}>
                                         <li>
-                                            chemistry: 5:00pm
-                                        </li>
-                                        <li>
-                                            physics: 11:59pm
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div className={"mx-4 mb-2 task_day_entry"}>
-                                    <h2>saturday, {month_num+"/"+(current_wk_start+5)}</h2>
-                                    <ul className={"none_type"}>
-                                        <li>none!</li>
-                                    </ul>
-                                </div>
-                                <div className={"mx-4 mt-3 mb-2 task_day_entry"}>
-                                    <h2>sunday, {month_num+"/"+(current_wk_start+6)}</h2>
-                                    <ul className={"none_type"}>
-                                        <li>none!</li>
-                                    </ul>
-                                </div>
+                                            <div className={"list_content"}>
+                                                <p className={"my-0"}>Bio 52</p>
+                                                <span className={"float-start"}>
 
+                                                </span>
+                                                <span className={"float-end list_time"}>
+                                                    11:59 PM
+                                                </span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <div className={"tde_bottom"}> </div>
+                                </div>
+                                <div className={"ms-3 me-2 mb-2 task_day_entry"}>
+                                    <h2 className={"fs-3"}>tuesday</h2>
+                                    <ul className={"mb-5 task_day_list"}>
+                                        <li>
+                                            <div className={"list_content"}>
+                                                <p className={"my-0"}>HMC Math 73</p>
+                                                <span className={"float-start"}>
+                                                    SP22
+                                                </span>
+                                                <span className={"float-end list_time"}>
+                                                    10:00 PM
+                                                </span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <div className={"tde_bottom"}> </div>
+                                </div>
+                                <div className={"ms-3 me-2 mb-2 task_day_entry"}>
+                                    <h2 className={"fs-3"}>wednesday</h2>
+                                    <ul className={"mb-5 task_day_list"}>
+                                        <li>
+                                            <div className={"list_content"}>
+                                                <p className={"my-0"}>HMC Chemistry</p>
+                                                <span className={"float-start"}>
+                                                    23B SP22
+                                                </span>
+                                                <span className={"float-end list_time"}>
+                                                    10:00 AM
+                                                </span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div className={"list_content"}>
+                                                <p className={"my-0"}>HMC Chemistry</p>
+                                                <span className={"float-start"}>
+                                                    23B SP22
+                                                </span>
+                                                <span className={"float-end list_time"}>
+                                                    5:00 PM
+                                                </span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <div className={"tde_bottom"}> </div>
+                                </div>
+                                <div className={"ms-3 me-2 mb-2 task_day_entry"}>
+                                    <h2 className={"fs-3"}>thursday</h2>
+                                    <ul className={"mb-5 task_day_list"}>
+                                        <li>
+                                            <div className={"list_content"}>
+                                                <p className={"my-0"}>HMC Phys 24</p>
+                                                <span className={"float-start"}>
+                                                    Sec 1-8 SP22
+                                                </span>
+                                                <span className={"float-end list_time"}>
+                                                    8:00 AM
+                                                </span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <div className={"tde_bottom"}> </div>
+                                </div>
+                                <div className={"ms-3 me-2 mb-2 task_day_entry"}>
+                                    <h2 className={"fs-3"}>friday</h2>
+                                    <ul className={"mb-5 task_day_list"}>
+                                        <li>
+                                            <div className={"list_content"}>
+                                                <p className={"my-0"}>HMC Chemistry</p>
+                                                <span className={"float-start"}>
+                                                    23B SP22
+                                                </span>
+                                                <span className={"float-end list_time"}>
+                                                    10:00 AM
+                                                </span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div className={"list_content"}>
+                                                <p className={"my-0"}>HMC Math 73</p>
+                                                <span className={"float-start"}>
+                                                    SP22
+                                                </span>
+                                                <span className={"float-end list_time"}>
+                                                    10:00 PM
+                                                </span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <div className={"tde_bottom"}> </div>
+                                </div>
+                                <div className={"ms-3 me-2 me-2 mb-2 task_day_entry"}>
+                                    <h2 className={"fs-3"}>saturday</h2>
+                                    <ul className={"mb-5 none_type"}>
+                                        <li>none!</li>
+                                    </ul>
+                                    <div className={"tde_bottom"}> </div>
+                                </div>
+                                <div className={"ms-3 me-2 mt-3 mb-2 task_day_entry"}>
+                                    <h2 className={"fs-3"}>sunday</h2>
+                                    <ul className={"mb-5 none_type"}>
+                                        <li>none!</li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                        <div className={"mt-3 dl_button_group"}>
-                            <button className={"mb-3 shadow-none btn btn-primary"}>download to Google Calendar</button>
-                            <button className={"shadow-none btn btn-primary"}>download to Apple Calendar</button>
+                        <div className={"mt-3 mt-lg-4 dl_button_group"}>
+                            <button className={"mb-3 shadow-none btn btn-primary"}>view weekly overview</button>
                         </div>
 
                     </Col>
+                </Row>
+                <Row className={"cover_up"}>
+
                 </Row>
 
 
