@@ -65,6 +65,18 @@ function Home(props){
         }
     }
 
+    function pdfToDownload(){
+        let rand = Math.floor(Math.random() * 6),
+        element = document.getElementById("cal_dnload");
+        console.log(rand);
+        if (rand === 5){
+            element.href = "Matt.pdf";
+        }
+        else{
+            element.href = "hi.pdf";
+        }
+    }
+
     useEffect(() =>
         {
             let i = 1;
@@ -72,6 +84,7 @@ function Home(props){
                 let idstr = "d"+i;
                 display_cal_event(idstr);
             }
+            pdfToDownload();
         }
     );
 
@@ -324,10 +337,11 @@ function Home(props){
                                 </div>
                             </div>
                         </div>
-                        <button style={{width:"40%"}} className={"shadow-none btn btn-primary"}
-                                onClick={(e) => display_cal_event("d2")}>
-                            download calendar
-                        </button>
+                        <a id="cal_dnload" href="hi.pdf" download="hi">
+                            <button style={{width:"40%"}} className={"shadow-none btn btn-primary"}>
+                                download calendar
+                            </button>
+                        </a>
                     </Col>
 
                     <Col lg={4} className={"px-0 pt-lg-4 pt-md-0 list_col"}>
@@ -499,7 +513,7 @@ function Home(props){
                             </div>
                         </div>
                         <div className={"mt-3 mt-lg-4 dl_button_group"}>
-                            <button className={"mb-3 shadow-none btn btn-primary"}>view weekly overview</button>
+                            <a href={"/gscal_wk_overview"} className={"mb-3 shadow-none btn btn-primary"}>view weekly overview</a>
                         </div>
 
                     </Col>
