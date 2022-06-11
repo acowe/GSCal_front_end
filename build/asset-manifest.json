@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/static/css/main.6ecdff58.css",
-    "main.js": "/static/js/main.b1be1c53.js",
-    "static/js/787.2cfb513a.chunk.js": "/static/js/787.2cfb513a.chunk.js",
-    "static/media/logo.svg": "/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
-    "index.html": "/index.html",
-    "main.6ecdff58.css.map": "/static/css/main.6ecdff58.css.map",
-    "main.b1be1c53.js.map": "/static/js/main.b1be1c53.js.map",
-    "787.2cfb513a.chunk.js.map": "/static/js/787.2cfb513a.chunk.js.map"
+    "main.css": "/gscal_front_end/static/css/main.6ecdff58.css",
+    "main.js": "/gscal_front_end/static/js/main.50cfc074.js",
+    "static/js/787.2cfb513a.chunk.js": "/gscal_front_end/static/js/787.2cfb513a.chunk.js",
+    "static/media/logo.svg": "/gscal_front_end/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/gscal_front_end/index.html",
+    "main.6ecdff58.css.map": "/gscal_front_end/static/css/main.6ecdff58.css.map",
+    "main.50cfc074.js.map": "/gscal_front_end/static/js/main.50cfc074.js.map",
+    "787.2cfb513a.chunk.js.map": "/gscal_front_end/static/js/787.2cfb513a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.6ecdff58.css",
-    "static/js/main.b1be1c53.js"
+    "static/js/main.50cfc074.js"
   ]
 }
