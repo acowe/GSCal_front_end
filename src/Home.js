@@ -513,7 +513,7 @@ function Home(props){
                             </div>
                         </div>
                         <div className={"mt-3 mt-lg-4 dl_button_group"}>
-                            <a href={"/#/gscal_wk_overview"} className={"mb-3 shadow-none btn btn-primary"}>view weekly overview</a>
+                            <a href={"/gscal_front_end/#/wk_overview"} className={"mb-3 shadow-none btn btn-primary"}>view weekly overview</a>
                         </div>
 
                     </Col>
