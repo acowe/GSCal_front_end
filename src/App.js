@@ -10,9 +10,8 @@ function App() {
     <div className="App">
         <Routes>
             <Route path={"/home"} element={<Home />}/>
-            <Route path={"/gscal_front_end"} element={<Navigate to="/home" />}/>
             <Route path={"/wk_overview"} element={<OtherPage />}/>
-            <Route path={"*"} element={<NoPage />} />
+            <Route path={"*"} element={<Navigate to="/home" />}/>
         </Routes>
     </div>
   );
