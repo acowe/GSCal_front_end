@@ -120,29 +120,36 @@ function Home(props){
 
                 <Row className={"contents"}>
                     <Col lg={8} className={"px-0 cal_col"}>
-                        <div className={"mx-md-5 mx-3 my-3 my-md-4 mt-lg-4 mb-lg-3 pb-2 cal_card"}>
+                        <div className={"mx-md-5 mx-3 my-3 my-md-4 mt-lg-4 mb-lg-3 pb-2 pb-lg-4 pb-xl-3 cal_card"}>
                             <h1 className={"cal_head"}>{month + " " + year}</h1>
-                            <Row className={"mx-sm-0 mt-2 mt-sm-3 mt-md-3 px-0 cal_days"}>
+                            <Row className={"mx-0 mt-2 mt-sm-3 mt-md-3 px-0 cal_days"}>
                                 <Col style={{width:"14.28%"}} className={"px-0"}>
-                                    Sunday
+                                    <p className={"my-0 px-1 fs-6 dow_full"}>sunday</p>
+                                    <p className={"my-0 px-1 fs-6 dow_short"}>sun</p>
                                 </Col>
                                 <Col style={{width:"14.28%"}} className={"px-0"}>
-                                    Monday
+                                    <p className={"my-0 px-1 fs-6 dow_full"}>monday</p>
+                                    <p className={"my-0 px-1 fs-6 dow_short"}>mon</p>
                                 </Col>
                                 <Col style={{width:"14.28%"}} className={"px-0"}>
-                                    Tuesday
+                                    <p className={"my-0 px-1 fs-6 dow_full"}>tuesday</p>
+                                    <p className={"my-0 px-1 fs-6 dow_short"}>tues</p>
                                 </Col>
                                 <Col style={{width:"14.28%"}} className={"px-0"}>
-                                    Wedsnesday
+                                    <p className={"my-0 px-1 fs-6 dow_full"}>wednesday</p>
+                                    <p className={"my-0 px-1 fs-6 dow_short"}>wed</p>
                                 </Col>
                                 <Col style={{width:"14.28%"}} className={"px-0"}>
-                                    Thursday
+                                    <p className={"my-0 px-1 fs-6 dow_full"}>thursday</p>
+                                    <p className={"my-0 px-1 fs-6 dow_short"}>thu</p>
                                 </Col>
                                 <Col style={{width:"14.28%"}} className={"px-0"}>
-                                    Friday
+                                    <p className={"my-0 px-1 fs-6 dow_full"}>friday</p>
+                                    <p className={"my-0 px-1 fs-6 dow_short"}>fri</p>
                                 </Col>
                                 <Col style={{width:"14.28%"}} className={"px-0"}>
-                                    Saturday
+                                    <p className={"my-0 px-1 fs-6 dow_full"}>saturday</p>
+                                    <p className={"my-0 px-1 fs-6 dow_short"}>sat</p>
                                 </Col>
                             </Row>
                             <Container className={"mx-sm-0 px-0 cal"}>
@@ -345,7 +352,7 @@ function Home(props){
                     </Col>
 
                     <Col lg={4} className={"px-0 pt-lg-4 pt-md-0 list_col"}>
-                        <div className={"ms-lg-0 me-lg-5 mx-md-5 mx-3 pb-2 task_card"}>
+                        <div className={"ms-lg-0 me-lg-5 mx-md-5 mx-3 pb-2 mt-4 mt-lg-0 task_card"}>
                             <div className={"task_card_contents"}>
                                 <div className={"ms-3 me-2 mt-1 mb-2 task_day_entry"}>
                                     <h2 className={"fs-3"}>monday</h2>
@@ -519,7 +526,6 @@ function Home(props){
                     </Col>
                 </Row>
                 <Row className={"cover_up"}>
-
                 </Row>
 
 

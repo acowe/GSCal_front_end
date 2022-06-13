@@ -11,7 +11,7 @@ function App() {
         <Routes>
             <Route path={"/home"} element={<Home />}/>
             <Route path={"/wk_overview"} element={<OtherPage />}/>
-            <Route path={"*"} element={<Navigate to="/home" />}/>
+            <Route path={"*"} element={<Navigate to="/home"/>}/>
         </Routes>
     </div>
   );
