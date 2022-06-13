@@ -391,7 +391,7 @@ function Home(props){
                                 </div>
                             </div>
                         </div>
-                        <a id="cal_dnload" href="some_cal.ics" download="some_calendar">
+                        <a id="cal_dnload" href="test_cal.ics" download="test_calendar">
                             <button style={{width:"40%"}} className={"shadow-none btn btn-primary"}>
                                 download calendar
                             </button>
