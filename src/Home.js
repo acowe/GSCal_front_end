@@ -80,11 +80,10 @@ function Home(props){
     useEffect(() =>
         {
             let i = 1;
-            for(i;i<8;i++){
+            for(i;i<15;i++){
                 let idstr = "d"+i;
                 display_cal_event(idstr);
             }
-            pdfToDownload();
         }
     );
 
@@ -226,25 +225,73 @@ function Home(props){
                                 </Row>
                                 <Row className={"mx-0 cal_wk"}>
                                     <Col style={{width:"14.28%"}} className={"px-0 cal_sun"}>
-                                        <div className={"cal_content"}></div>
+                                        <div id="d8" className={"cal_content"}></div>
                                     </Col>
                                     <Col style={{width:"14.28%"}} className={"px-0 cal_wkday"}>
-                                        <div className={"cal_content"}></div>
+                                        <div id="d9" className={"cal_content"}>
+                                            <ul>
+                                                <li className={"course_3"}>
+                                                    <div className={"to_do_text"}>Homework 6</div>
+                                                </li>
+                                                <li className={"course_1"}>
+                                                    <div className={"to_do_text"}>9.1 Preclass</div>
+                                                </li>
+                                                <li className={"course_1"}>
+                                                    <div className={"to_do_text"}>Quiz 3</div>
+                                                </li>
+                                                <li className={"course_4"}>
+                                                    <div className={"to_do_text"}>Homework #3 Written: rateSeqChange.txt</div>
+                                                </li>
+                                                <li className={"course_4"}>
+                                                    <div className={"to_do_text"}>Homework #3 Code: dist.py</div>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </Col>
                                     <Col style={{width:"14.28%"}} className={"px-0 cal_wkday"}>
-                                        <div className={"cal_content"}></div>
+                                        <div id="d10" className={"cal_content"}>
+                                            <ul>
+                                                <li className={"course_2"}>
+                                                    <div className={"to_do_text"}>Homework 3A</div>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </Col>
                                     <Col style={{width:"14.28%"}} className={"px-0 cal_wkday"}>
-                                        <div className={"cal_content"}></div>
+                                        <div id="d11" className={"cal_content"} >
+                                            <ul>
+                                                <li className={"course_1"}>
+                                                    <div className={"to_do_text"}>9.1 Preclass</div>
+                                                </li>
+                                                <li className={"course_1"}>
+                                                    <div className={"to_do_text"}>HW3</div>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </Col>
                                     <Col style={{width:"14.28%"}} className={"px-0 cal_wkday"}>
-                                        <div className={"cal_content"}></div>
+                                        <div id="d12" className={"cal_content"} >
+                                            <ul>
+                                                <li className={"course_3"}>
+                                                    <div className={"to_do_text"}>Recitation #5</div>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </Col>
                                     <Col style={{width:"14.28%"}} className={"px-0 cal_wkday"}>
-                                        <div className={"cal_content"}></div>
+                                        <div id={"d13"} className={"cal_content"}>
+                                            <ul>
+                                                <li className={"course_1"}>
+                                                    <div className={"to_do_text"}>9.2 Preclass</div>
+                                                </li>
+                                                <li className={"course_2"}>
+                                                    <div className={"to_do_text"}>Homework 3B</div>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </Col>
                                     <Col style={{width:"14.28%"}} className={"px-0 cal_sat"}>
-                                        <div className={"cal_content"}></div>
+                                        <div id={"d14"}className={"cal_content"}></div>
                                     </Col>
                                 </Row>
 
@@ -344,7 +391,7 @@ function Home(props){
                                 </div>
                             </div>
                         </div>
-                        <a id="cal_dnload" href="hi.pdf" download="hi">
+                        <a id="cal_dnload" href="some_cal.ics" download="some_calendar">
                             <button style={{width:"40%"}} className={"shadow-none btn btn-primary"}>
                                 download calendar
                             </button>
