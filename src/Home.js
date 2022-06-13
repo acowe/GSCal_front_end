@@ -352,7 +352,7 @@ function Home(props){
                     </Col>
 
                     <Col lg={4} className={"px-0 pt-lg-4 pt-md-0 list_col"}>
-                        <div className={"ms-lg-0 me-lg-5 mx-md-5 mx-3 pb-2 mt-4 mt-lg-0 task_card"}>
+                        <div className={"ms-lg-0 me-lg-5 mx-md-5 mx-3 pb-2 mt-4 mt-lg-0 mb-lg-0 task_card"}>
                             <div className={"task_card_contents"}>
                                 <div className={"ms-3 me-2 mt-1 mb-2 task_day_entry"}>
                                     <h2 className={"fs-3"}>monday</h2>
@@ -519,7 +519,7 @@ function Home(props){
                                 </div>
                             </div>
                         </div>
-                        <div className={"mt-3 mt-lg-4 dl_button_group"}>
+                        <div className={"mt-lg-4 dl_button_group"}>
                             <a href={"/gscal_front_end/#/wk_overview"} className={"mb-3 shadow-none btn btn-primary"}>view weekly overview</a>
                         </div>
 

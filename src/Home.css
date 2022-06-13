@@ -382,6 +382,12 @@
     }
 }
 
+@media (max-width: 991px) {
+    .list_col{
+        height: 95%;
+    }
+}
+
 .task_card{
     max-width: 100%;
     height: 100%;
@@ -398,7 +404,7 @@
 
 @media (max-width: 991px) {
     .task_card{
-        max-height: 80%;
+        max-height: 90%;
     }
 }
 
@@ -418,6 +424,14 @@
     background-color: #F5F5F5;
 }
 
+@media (max-width: 400px){
+    .task_card_contents::-webkit-scrollbar
+    {
+        width: 0px;
+        background-color: #F5F5F5;
+    }
+}
+
 .task_card_contents::-webkit-scrollbar-thumb
 {
     border-radius: 10px;
@@ -427,8 +441,10 @@
 @media (max-width: 400px) {
     .task_card .task_card_contents{
         height:100%;
-        overflow-y: hidden;
+        overflow-y: scroll;
     }
+
+
 }
 
 .task_day_entry{
@@ -489,8 +505,9 @@
 
 @media (max-width: 991px) {
     .dl_button_group{
+        background-color: #07A2A1;
         width: 100%;
-        margin-top: 3rem;
+        margin-top: 1.8rem;
         height: auto;
     }
 }
