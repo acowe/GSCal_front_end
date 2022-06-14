@@ -1,6 +1,24 @@
 import {Container, Row, Col, Button, Card, Dropdown} from "react-bootstrap";
 import './Home.css'
 import {useState, useEffect} from "react";
+import { initializeApp } from "firebase/app";
+import { getFirestore, collection, doc, addDoc, getDocs } from "firebase/firestore";
+
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+    apiKey: "AIzaSyA6Bx3J-IB1EnvqSE5Pja7r2R5ykJOjsFA",
+    authDomain: "gscaltest.firebaseapp.com",
+    projectId: "gscaltest",
+    storageBucket: "gscaltest.appspot.com",
+    messagingSenderId: "977140376530",
+    appId: "1:977140376530:web:44496ec55fc6235d8f5e0b",
+    measurementId: "G-5E3SBZM1QD"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
 function num_to_month(n){
     switch (n) {
