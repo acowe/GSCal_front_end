@@ -2,7 +2,7 @@ import {Container, Row, Col, Button, Card, Dropdown} from "react-bootstrap";
 import './Home.css'
 import {useState, useEffect} from "react";
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, doc, addDoc, getDocs } from "firebase/firestore";
+import {getFirestore, collection, doc, addDoc, getDocs, query, orderBy, getDoc} from "firebase/firestore";
 
 
 // Your web app's Firebase configuration
@@ -73,11 +73,15 @@ function Home(props){
     const month_num = current.getMonth()+1;
     const month = num_to_month(month_num);
     const year = current.getFullYear();
+    const [assignments, setAssignments] = useState([]);
+    const [courses, setCourses] = useState([]);
+    const [dueTimes, setDueTimes] = useState([]);
+    const [numAssignments, setNumAssignements] = useState(-1);
+
 
 
     function display_cal_event(d_id) {
-        const d_elements = document.querySelectorAll("#"+ d_id + ".cal_content ul li"),
-            listLen = d_elements.length;
+        const listLen = numAssignments;
         if (listLen > 3) {
             document.getElementById(d_id).classList.add("many");
         }
@@ -95,14 +99,54 @@ function Home(props){
         }
     }
 
+    async function getAssignments(){
+        const docRef = doc(db,"GSCalTestCol", "testCalData", "testWeeks","week_1","days","monday")
+        const colRef = collection(db, "GSCalTestCol", "testCalData", "testWeeks","week_1","days","monday","assignments");
+        const q = query(colRef, orderBy("due"))
+        const docSnap = await getDoc(docRef);
+        const querySnap = await getDocs(q);
+        const assignArr = querySnap.docs.map(doc => doc.data().name);
+        const courseArr = querySnap.docs.map(doc => doc.data().course)
+        const dueArr = querySnap.docs.map(doc => doc.data().due)
+        setNumAssignements(docSnap.data().num_assignments)
+        setAssignments(assignArr);
+        setCourses(courseArr);
+        setDueTimes(dueArr);
+    }
+
+    const displayAssignments = assignments.map((a,i) =>
+    {
+        let course = courses[i];
+        return (<li key={i} className={course}><div className={"to_do_text"}>{a}</div></li>);
+    });
+
+    const displayDue = dueTimes.map((t,i) =>
+        {
+            let time = new Date(t.seconds*1000);
+            let isAm = (time.getHours() < 12 ? true : false)
+            let hour = (isAm ? time.getHours() : time.getHours() - 12);
+            let min = (time.getMinutes() < 10 ? "0" + time.getMinutes() : time.getMinutes());
+            let ampm = (isAm ? "AM": "PM")
+            return (<li>
+                    <div className={"list_content"}>
+                        <div className={"course_text"}>{courses[i]}</div>
+                        <div className={"list_time"}>
+                            <p className={"mb-0 list_time_text"}>{hour +  ":" + min + " " + ampm}</p>
+                        </div>
+                    </div>
+            </li>);
+        }
+    );
+
     useEffect(() =>
         {
+            getAssignments();
             let i = 1;
             for(i;i<15;i++){
                 let idstr = "d"+i;
                 display_cal_event(idstr);
             }
-        }
+        }, []
     );
 
 
@@ -172,30 +216,19 @@ function Home(props){
                             <Container className={"mx-sm-0 px-0 cal"}>
                                 <Row className={"mx-0 cal_wk_fst"}>
                                     <Col style={{width:"14.28%"}} className={"px-0 cal_sun"}>
+                                        <p className={"mb-0 pe-1 text-end cal_date"}>1</p>
                                         <div id="d1" className={"cal_content"}></div>
                                     </Col>
                                     <Col style={{width:"14.28%"}} className={"px-0 cal_wkday"}>
+                                        <p className={"mb-0 pe-1 text-end cal_date"}>2</p>
                                         <div id="d2" className={"cal_content"}>
                                             <ul>
-                                                <li className={"course_3"}>
-                                                    <div className={"to_do_text"}>Homework 6</div>
-                                                </li>
-                                                <li className={"course_1"}>
-                                                    <div className={"to_do_text"}>9.1 Preclass</div>
-                                                </li>
-                                                <li className={"course_1"}>
-                                                    <div className={"to_do_text"}>Quiz 3</div>
-                                                </li>
-                                                <li className={"course_4"}>
-                                                    <div className={"to_do_text"}>Homework #3 Written: rateSeqChange.txt</div>
-                                                </li>
-                                                <li className={"course_4"}>
-                                                    <div className={"to_do_text"}>Homework #3 Code: dist.py</div>
-                                                </li>
+                                                {displayAssignments}
                                             </ul>
                                         </div>
                                     </Col>
                                     <Col style={{width:"14.28%"}} className={"px-0 cal_wkday"}>
+                                        <p className={"mb-0 pe-1 text-end cal_date"}>3</p>
                                         <div id="d3" className={"cal_content"}>
                                             <ul>
                                                 <li className={"course_2"}>
@@ -205,6 +238,7 @@ function Home(props){
                                         </div>
                                     </Col>
                                     <Col style={{width:"14.28%"}} className={"px-0 cal_wkday"}>
+                                        <p className={"mb-0 pe-1 text-end cal_date"}>4</p>
                                         <div id="d4" className={"cal_content"} >
                                             <ul>
                                                 <li className={"course_1"}>
@@ -217,6 +251,7 @@ function Home(props){
                                         </div>
                                     </Col>
                                     <Col style={{width:"14.28%"}} className={"px-0 cal_wkday"}>
+                                        <p className={"mb-0 pe-1 text-end cal_date"}>5</p>
                                         <div id="d5" className={"cal_content"} >
                                             <ul>
                                                 <li className={"course_3"}>
@@ -226,6 +261,7 @@ function Home(props){
                                         </div>
                                     </Col>
                                     <Col style={{width:"14.28%"}} className={"px-0 cal_wkday"}>
+                                        <p className={"mb-0 pe-1 text-end cal_date"}>6</p>
                                         <div id={"d6"} className={"cal_content"}>
                                             <ul>
                                                 <li className={"course_1"}>
@@ -238,14 +274,17 @@ function Home(props){
                                         </div>
                                     </Col>
                                     <Col style={{width:"14.28%"}} className={"px-0 cal_sat"}>
+                                        <p className={"mb-0 pe-1 text-end cal_date"}>7</p>
                                         <div id={"d7"} className={"cal_content"}></div>
                                     </Col>
                                 </Row>
                                 <Row className={"mx-0 cal_wk"}>
                                     <Col style={{width:"14.28%"}} className={"px-0 cal_sun"}>
+                                        <p className={"mb-0 pe-1 text-end cal_date"}>8</p>
                                         <div id="d8" className={"cal_content"}></div>
                                     </Col>
                                     <Col style={{width:"14.28%"}} className={"px-0 cal_wkday"}>
+                                        <p className={"mb-0 pe-1 text-end cal_date"}>9</p>
                                         <div id="d9" className={"cal_content"}>
                                             <ul>
                                                 <li className={"course_3"}>
@@ -267,6 +306,7 @@ function Home(props){
                                         </div>
                                     </Col>
                                     <Col style={{width:"14.28%"}} className={"px-0 cal_wkday"}>
+                                        <p className={"mb-0 pe-1 text-end cal_date"}>10</p>
                                         <div id="d10" className={"cal_content"}>
                                             <ul>
                                                 <li className={"course_2"}>
@@ -276,6 +316,7 @@ function Home(props){
                                         </div>
                                     </Col>
                                     <Col style={{width:"14.28%"}} className={"px-0 cal_wkday"}>
+                                        <p className={"mb-0 pe-1 text-end cal_date"}>11</p>
                                         <div id="d11" className={"cal_content"} >
                                             <ul>
                                                 <li className={"course_1"}>
@@ -288,6 +329,7 @@ function Home(props){
                                         </div>
                                     </Col>
                                     <Col style={{width:"14.28%"}} className={"px-0 cal_wkday"}>
+                                        <p className={"mb-0 pe-1 text-end cal_date"}>12</p>
                                         <div id="d12" className={"cal_content"} >
                                             <ul>
                                                 <li className={"course_3"}>
@@ -297,6 +339,7 @@ function Home(props){
                                         </div>
                                     </Col>
                                     <Col style={{width:"14.28%"}} className={"px-0 cal_wkday"}>
+                                        <p className={"mb-0 pe-1 text-end cal_date"}>13</p>
                                         <div id={"d13"} className={"cal_content"}>
                                             <ul>
                                                 <li className={"course_1"}>
@@ -309,63 +352,84 @@ function Home(props){
                                         </div>
                                     </Col>
                                     <Col style={{width:"14.28%"}} className={"px-0 cal_sat"}>
+                                        <p className={"mb-0 pe-1 text-end cal_date"}>14</p>
                                         <div id={"d14"}className={"cal_content"}></div>
                                     </Col>
                                 </Row>
 
                                 <Row className={"mx-0 cal_wk"}>
                                     <Col style={{width:"14.28%"}} className={"px-0 cal_sun"}>
+                                        <p className={"mb-0 pe-1 text-end cal_date"}>15</p>
+                                        <div className={"cal_content"}>
+                                        </div>
+                                    </Col>
+                                    <Col style={{width:"14.28%"}} className={"px-0 cal_wkday"}>
+                                        <p className={"mb-0 pe-1 text-end cal_date"}>16</p>
+                                        <div className={"cal_content"}>
+                                            <ul>{displayAssignments}</ul>
+                                        </div>
+                                    </Col>
+                                    <Col style={{width:"14.28%"}} className={"px-0 cal_wkday"}>
+                                        <p className={"mb-0 pe-1 text-end cal_date"}>17</p>
                                         <div className={"cal_content"}></div>
                                     </Col>
                                     <Col style={{width:"14.28%"}} className={"px-0 cal_wkday"}>
+                                        <p className={"mb-0 pe-1 text-end cal_date"}>18</p>
                                         <div className={"cal_content"}></div>
                                     </Col>
                                     <Col style={{width:"14.28%"}} className={"px-0 cal_wkday"}>
+                                        <p className={"mb-0 pe-1 text-end cal_date"}>19</p>
                                         <div className={"cal_content"}></div>
                                     </Col>
                                     <Col style={{width:"14.28%"}} className={"px-0 cal_wkday"}>
-                                        <div className={"cal_content"}></div>
-                                    </Col>
-                                    <Col style={{width:"14.28%"}} className={"px-0 cal_wkday"}>
-                                        <div className={"cal_content"}></div>
-                                    </Col>
-                                    <Col style={{width:"14.28%"}} className={"px-0 cal_wkday"}>
+                                        <p className={"mb-0 pe-1 text-end cal_date"}>20</p>
                                         <div className={"cal_content"}></div>
                                     </Col>
                                     <Col style={{width:"14.28%"}} className={"px-0 cal_sat"}>
+                                        <p className={"mb-0 pe-1 text-end cal_date"}>21</p>
                                         <div className={"cal_content"}></div>
                                     </Col>
                                 </Row>
 
                                 <Row className={"mx-0 cal_wk"}>
                                     <Col style={{width:"14.28%"}} className={"px-0 cal_sun"}>
+                                        <p className={"mb-0 pe-1 text-end cal_date"}>22</p>
                                         <div className={"cal_content"}></div>
                                     </Col>
                                     <Col style={{width:"14.28%"}} className={"px-0 cal_wkday"}>
+                                        <p className={"mb-0 pe-1 text-end cal_date"}>23</p>
                                         <div className={"cal_content"}></div>
                                     </Col>
                                     <Col style={{width:"14.28%"}} className={"px-0 cal_wkday"}>
+                                        <p className={"mb-0 pe-1 text-end cal_date"}>24</p>
                                         <div className={"cal_content"}></div>
                                     </Col>
                                     <Col style={{width:"14.28%"}} className={"px-0 cal_wkday"}>
+                                        <p className={"mb-0 pe-1 text-end cal_date"}>25</p>
                                         <div className={"cal_content"}></div>
                                     </Col>
                                     <Col style={{width:"14.28%"}} className={"px-0 cal_wkday"}>
+                                        <p className={"mb-0 pe-1 text-end cal_date"}>26</p>
                                         <div className={"cal_content"}></div>
                                     </Col>
                                     <Col style={{width:"14.28%"}} className={"px-0 cal_wkday"}>
+                                        <p className={"mb-0 pe-1 text-end cal_date"}>27</p>
                                         <div className={"cal_content"}></div>
                                     </Col>
                                     <Col style={{width:"14.28%"}} className={"px-0 cal_sat"}>
+                                        <p className={"mb-0 pe-1 text-end cal_date"}>28</p>
                                         <div className={"cal_content"}></div>
                                     </Col>
                                 </Row>
 
                                 <Row className={"mx-0 cal_wk_last"}>
+
                                     <Col style={{width:"14.28%"}} className={"px-0 cal_sun"}>
+                                        <p className={"mb-0 pe-1 text-end cal_date"}>29</p>
                                         <div className={"cal_content"}></div>
                                     </Col>
                                     <Col style={{width:"14.28%"}} className={"px-0 cal_wkday"}>
+                                        <p className={"mb-0 pe-1 text-end cal_date"}>30</p>
                                         <div className={"cal_content"}></div>
                                     </Col>
                                     <Col style={{width:"14.28%"}} className={"px-0 cal_wkday"}>
@@ -419,63 +483,10 @@ function Home(props){
                     <Col lg={4} className={"px-0 pt-lg-4 pt-md-0 list_col"}>
                         <div className={"ms-lg-0 me-lg-5 mx-md-5 mx-3 pb-2 mt-4 mt-lg-0 mb-lg-0 task_card"}>
                             <div className={"task_card_contents"}>
-                                <div className={"ms-3 me-2 mt-1 mb-2 task_day_entry"}>
+                                <div className={"mx-2 mx-sm-3 mt-1 mb-2 task_day_entry"}>
                                     <h2 className={"fs-3"}>monday</h2>
                                     <ul className={"mb-5 task_day_list"}>
-                                        <li>
-                                            <div className={"list_content"}>
-                                                <p className={"my-0"}>HMC Phys 24</p>
-                                                <span className={"float-start"}>
-                                                    Sec 1-8 SP22
-                                                </span>
-                                                <span className={"float-end list_time"}>
-                                                    8:00 AM
-                                                </span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div className={"list_content"}>
-                                                <p className={"my-0"}>HMC Chemistry</p>
-                                                <span className={"float-start"}>
-                                                    23B SP22
-                                                </span>
-                                                <span className={"float-end list_time"}>
-                                                    10:00 AM
-                                                </span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div className={"list_content"}>
-                                                <p className={"my-0"}>HMC Chemistry</p>
-                                                <span className={"float-start"}>
-                                                    23B SP22
-                                                </span>
-                                                <span className={"float-end list_time"}>
-                                                    10:00 AM
-                                                </span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div className={"list_content"}>
-                                                <p className={"my-0"}>Bio 52</p>
-                                                <span className={"float-start"}>
-                                                </span>
-                                                <span className={"float-end list_time"}>
-                                                    11:59 PM
-                                                </span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div className={"list_content"}>
-                                                <p className={"my-0"}>Bio 52</p>
-                                                <span className={"float-start"}>
-
-                                                </span>
-                                                <span className={"float-end list_time"}>
-                                                    11:59 PM
-                                                </span>
-                                            </div>
-                                        </li>
+                                        {displayDue}
                                     </ul>
                                     <div className={"tde_bottom"}> </div>
                                 </div>

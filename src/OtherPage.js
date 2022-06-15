@@ -21,18 +21,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-async function getStuff(){
-    const docRef = doc(db, "GSCalTestCol", "testCalData", "testWeeks","week_1","days","monday","assignments","a0");
-    const docSnap = await getDoc(docRef);
-    const docData = docSnap.data();
-
-    if (docSnap.exists()) {
-        console.log("Document data:", docData.course);
-    } else {
-        // doc.data() will be undefined in this case
-        console.log("No such document!");
-    }
-}
 
 async function getStuff2(){
     const colRef = collection(db, "GSCalTestCol", "testCalData", "testWeeks","week_1","days","monday","assignments");
@@ -46,15 +34,28 @@ async function getStuff2(){
 }
 
 
-
-
-
-
-
 function OtherPage(){
 
+    const [displayThing, setDisplayThing] = useState("");
     const [courseLineUp, setCourseLineUp] = useState([]);
     const [timeArr, setTimeArr] = useState([]);
+
+    async function getStuff(){
+        const docRef = doc(db, "GSCalTestCol", "testCalData", "testWeeks","week_1","days","monday","assignments","a0");
+        const docSnap = await getDoc(docRef);
+        const docData = docSnap.data();
+
+        if (docSnap.exists()) {
+            console.log("Document data:", docData.course);
+            setDisplayThing(JSON.stringify(docData));
+
+        } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+        }
+
+    }
+
 
     async function getStuff3() {
         const colRef = collection(db, "GSCalTestCol", "testCalData", "testWeeks","week_1","days","monday","assignments");
@@ -81,9 +82,8 @@ function OtherPage(){
         return course + ", due at " + time.getHours().toString() + ":" + time.getMinutes().toString();
     }
 
-    const displayNames = courseLineUp.map((n,index) => { return (<li key={index}>{n}</li>); });
+    const displayNames = courseLineUp.map((n,index) => { return (<li key={index}>{n}</li>);});
     const displayTimes = timeArr.map((t,index) => { return (<li key={index}>{t}</li>); });
-
     console.log(timeArr);
 
     return(
@@ -106,6 +106,7 @@ function OtherPage(){
                <ul>
                    {displayTimes}
                </ul>
+               <p>{displayThing}</p>
 
 
            </div>

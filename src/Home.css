@@ -213,7 +213,9 @@
     aspect-ratio: 1;
 }
 
-
+.cal_date{
+    color: #696d6e;
+}
 
 .cal_content{
     display: block;
@@ -221,7 +223,10 @@
     max-height: 100px;
     background-color: white;
     white-space:nowrap;
-    padding: 0.75rem;
+    padding-top: 0rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    padding-bottom: 0.75rem;
     overflow: scroll;
 }
 
@@ -260,7 +265,10 @@
 
 @media (max-width: 625px){
     .cal_content{
-        padding: 0.3rem;
+        padding-top: 0rem;
+        padding-left: 0.3rem;
+        padding-right: 0.3rem;
+        padding-bottom: 0.3rem;
         overflow: scroll;
     }
     .cal_content ul li{
@@ -334,7 +342,7 @@
 
 
 
-.course_1{
+.course_1, .Chemistry{
     text-align: center;
     padding-left: 1.7rem;
     padding-right: 1.7rem;
@@ -348,7 +356,7 @@
     background-color: #FF904D;
 }
 
-.course_3{
+.course_3, .Phys{
     text-align: center;
     padding-left: 1.7rem;
     padding-right: 1.7rem;
@@ -356,7 +364,7 @@
 
 }
 
-.course_4{
+.course_4, .Bio{
     text-align: center;
     padding-left: 1.7rem;
     padding-right: 1.7rem;
@@ -464,7 +472,7 @@
     padding-right: 0.5rem;
     display: flex;
     justify-content: space-between;
-    height: 100%;
+    min-height: 4rem;
     font-size: 1.2rem;
     font-weight: bold;
 }
@@ -473,13 +481,33 @@
     background-color: #C4EBEA;
 }
 
-.list_time{
-    font-size: 1.35rem;
-    color: #04A3A1;
-}
 
 .list_content{
     width: 100%;
+}
+
+.course_text{
+    float: left;
+    max-width: 40%;
+}
+
+.list_time{
+    position: relative;
+    font-size: 1.35rem;
+    color: #04A3A1;
+    height: 100%;
+    float: right;
+    width: 40%;
+    display: flex;
+
+
+}
+
+.list_time_text{
+    position: absolute;
+    height: 2rem;
+    bottom: 0;
+    right: 0;
 }
 
 .tde_bottom{
