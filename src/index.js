@@ -2,12 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {BrowserRouter, HashRouter, Route, Routes} from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './index.css';
+import './style/index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import Home from "./Home";
-import OtherPage from "./OtherPage";
-import NoPage from "./NoPage";
+import Home from "./pages/Home";
+import OtherPage from "./pages/OtherPage";
+import NoPage from "./pages/NoPage";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
