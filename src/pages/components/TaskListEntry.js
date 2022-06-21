@@ -74,7 +74,7 @@ function TaskListEntry(props){
 
     return(
         <div className={"mx-2 mx-sm-3 mt-1 mb-2 task_day_entry"}>
-            <h2 className={"fs-3"}>{props.dayOfWeek}</h2>
+            <h2 className={"fs-3 td_day"}>{props.dayOfWeek}</h2>
             <ul className={"mb-5 " + listType}>
                 {!error && displayDue}
                 {(courses.length <= 0) && <li>none!</li>}

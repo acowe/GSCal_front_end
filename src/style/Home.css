@@ -9,14 +9,32 @@
     background-color: #07A2A1;
 }
 
+.sidebar_true{
+    position: fixed;
+}
+
+.darkMode_true .container-fluid{
+    background-color: #182020;
+}
+
 .header{
     background-color: #47C6C4;
     font-size: large;
     overflow-y: visible;
 }
 
+.darkMode_true .header{
+    background-color: #394444;
+}
+
+.header a:hover{
+    color: #057a77;
+    cursor: pointer;
+}
+
 .btn-light{
     background-color: white;
+    border-color: white;
     color: #057a77;
 }
 
@@ -24,6 +42,25 @@
     background-color: #f1f1f1;
     font-weight: 500;
     color: #05736e;
+}
+
+.darkMode_true .btn-light, .darkMode_true .btn-light:focus, .darkMode_true .btn-light:active, .darkMode_true .btn-light.active,.darkMode_true .open>.dropdown-toggle.btn-light{
+    background-color: #182020;
+    color: #46c7c4;
+    border-color: #182020;
+}
+
+.darkMode_true .dropdown-menu{
+    background-color: #293232;
+}
+
+.darkMode_true .dropdown-item{
+    color: #bcd6d5;
+}
+
+.darkMode_true .dropdown-item:hover,.darkMode_true .dropdown-item:focus, .darkMode_true .dropdown-item:active {
+    color: #99cccb;
+    background-color: #1c2323;
 }
 
 .h_other{
@@ -35,6 +72,17 @@
     color: #057a77;
 }
 
+.darkMode_true .h_other_text{
+    color: #46c7c4;
+}
+
+.h_title{
+    color: #f7f7f7;
+}
+
+.darkMode_true .h_title{
+    color: #46c7c4;
+}
 
 
 @media (max-width: 770px) {
@@ -68,14 +116,22 @@
     display: none !important;
 }
 
-
 .contents{
     height: 100%;
     background-color: #07A2A1;
 }
 
+.darkMode_true .contents{
+    height: 100%;
+    background-color: #182020;
+}
+
 .cal_col{
     background-color: #07A2A1;
+}
+
+.darkMode_true .cal_col{
+    background-color: #182020;
 }
 
 .cal_card{
@@ -90,6 +146,11 @@
 
 }
 
+.darkMode_true .cal_card{
+    background-color: #394444;
+    box-shadow: none;
+}
+
 .cal_head{
     text-align: left;
     padding-left: 1.3rem;
@@ -99,6 +160,11 @@
     color: white;
     border-radius: 10px;
     font-size: 3.5rem;
+}
+
+.darkMode_true .cal_head{
+    background-color: #182020;
+    color: #bcd6d5;
 }
 
 .container, .container-sm{
@@ -161,7 +227,10 @@
     font-weight: bold;
     color: #07A2A1;
     margin-bottom: 0.1rem;
+}
 
+.darkMode_true .cal_days{
+    color: #bcd6d5;
 }
 
 .cal_wk_fst{
@@ -213,9 +282,19 @@
     aspect-ratio: 1;
 }
 
+.darkMode_true .cal,.darkMode_true .cal_wk_fst,.darkMode_true .cal_wk,.darkMode_true .cal_wk_last,.darkMode_true .cal_sun,.darkMode_true .cal_wkday,.darkMode_true .cal_sat{
+    border-color: #597977;
+}
+
 .cal_date{
     color: #696d6e;
 }
+
+.darkMode_true .cal_date{
+    color: #86aba9;
+}
+
+
 
 .cal_content{
     display: block;
@@ -228,6 +307,10 @@
     padding-right: 0.75rem;
     padding-bottom: 0.75rem;
     overflow: scroll;
+}
+
+.darkMode_true .cal_content{
+    background-color: #394444;
 }
 
 .cal_content ul{
@@ -297,6 +380,10 @@
     padding-top: .4rem;
 }
 
+.darkMode_true .key_text{
+    color: #bcd6d5;
+}
+
 @media (max-width: 770px){
     .key_text{
         padding-top: 0.4rem;
@@ -322,6 +409,10 @@
     height: 100%;
     width: 70%;
     overflow-x: scroll;
+}
+
+.darkMode_true .courses{
+    background-color: #394444;
 }
 
 
@@ -383,6 +474,10 @@
     background-color: #07A2A1;
 }
 
+.darkMode_true .list_col{
+    background-color: #182020;
+}
+
 
 @media (min-width: 992px) {
     .cal_col, .list_col{
@@ -410,6 +505,11 @@
     overflow-y: hidden;
 }
 
+.darkMode_true .task_card{
+    background-color: #394444;
+    box-shadow: none;
+}
+
 @media (max-width: 991px) {
     .task_card{
         max-height: 90%;
@@ -429,7 +529,10 @@
 .task_card_contents::-webkit-scrollbar
 {
     width: 12px;
-    background-color: #F5F5F5;
+}
+
+.darkMode_true .task_card_contents::-webkit-scrollbar-track{
+    background-color: #394444;
 }
 
 @media (max-width: 400px){
@@ -444,6 +547,10 @@
 {
     border-radius: 10px;
     background-color: #47C6C4;
+}
+
+.darkMode_true .task_card_contents::-webkit-scrollbar-thumb{
+    background-color: #597977;
 }
 
 @media (max-width: 400px) {
@@ -481,14 +588,27 @@
     background-color: #C4EBEA;
 }
 
+.darkMode_true .task_day_list li:nth-child(odd){
+    background-color: #293232;
+}
+
+
 
 .list_content{
     width: 100%;
 }
 
+.darkMode_true .td_day{
+    color: #46c7c4;
+}
+
 .course_text{
     float: left;
     max-width: 40%;
+}
+
+.darkMode_true .course_text{
+    color: #bcd6d5;
 }
 
 .list_time{
@@ -499,8 +619,6 @@
     float: right;
     width: 40%;
     display: flex;
-
-
 }
 
 .list_time_text{
@@ -509,6 +627,11 @@
     bottom: 0;
     right: 0;
 }
+
+.darkMode_true .list_time{
+    color: #46c7c4;
+}
+
 
 .tde_bottom{
     background-color: #04A3A1;
@@ -521,6 +644,12 @@
     font-size: 23px;
     color: gray;
 }
+
+.darkMode_true .none_type{
+    color: #86aba9;
+}
+
+
 
 @media (min-width: 992px) {
     .dl_button_group{
@@ -538,8 +667,10 @@
         margin-top: 1.8rem;
         height: auto;
     }
+    .darkMode_true .dl_button_group{
+        background-color: #182020;
+    }
 }
-
 
 
 
@@ -560,7 +691,9 @@
     background-color: #41c2c0;
 }
 
-
+.darkMode_true .btn-primary{
+    color: #182020;
+}
 
 .form-control:focus{
     border-color: #28a745;
@@ -572,10 +705,72 @@
 }
 
 
+
+
 @media (min-width: 992px){
     .cover_up {
         height: 90px;
         background-color: #07A2A1;
     }
+
+    .darkMode_true .cover_up{
+        height: 90px;
+        background-color: #192020;
+    }
 }
 
+
+.sidebar_false .sidebar{
+    background-color: #F4F8F9;
+    position: fixed;
+    height: 100vh;
+    width: 25%;
+    border-right-style: solid;
+    border-width: 1px;
+    border-color: #B5C4C5;
+    transition: .4s;
+    left: -25%;
+}
+
+.darkMode_true .sidebar_false .sidebar{
+
+}
+
+.sidebar_false .sidebar_other{
+    display: none;
+}
+
+.sidebar_true .sidebar {
+    background-color: #F4F8F9;
+    position: fixed;
+    height: 100vh;
+    width: 25%;
+    border-right-style: solid;
+    border-width: 1px;
+    border-color: #B5C4C5;
+    transition: .4s;
+    left: 0;
+}
+
+
+.profile_img{
+    max-width: 50%;
+    height: auto;
+}
+
+.sidebar_true .sidebar_other{
+    position: fixed;
+    right:0;
+    height: 100vh;
+    width: 75%;
+}
+
+
+.sidebar_options{
+    list-style: none;
+    padding-left: 0;
+}
+
+.d_mode_switch{
+    margin-left: 43%;
+}

@@ -29,9 +29,23 @@ function generateWkDates(startDate, maxDay){
     return wkDates;
 }
 
+function generateStart(startDate, maxDay, month, year){
+    let currentDay = startDate, currentMonth = month, currentYear = year;
+    if (startDate > maxDay){
+        currentDay = startDate - maxDay;
+        currentMonth = month + 1;
+        if(currentMonth > 12){
+            currentMonth = 1;
+            currentYear = year + 1
+        }
+    }
+    return [currentDay, currentMonth, currentYear];
+}
+
 function CalWeek(props){
     const thisWeekDates = generateWkDates(props.wk_of,props.dayInMonth);
-    const startArr = [props.wk_of, props.month, props.year];
+    const startArr = generateStart(props.wk_of, props.dayInMonth, props.month, props.year);
+
 
     return(
         <Row className={"mx-0 " + props.wk_type}>

@@ -1,8 +1,10 @@
 import {Container, Row, Col, Button, Card, Dropdown} from "react-bootstrap";
+import {useState} from "react";
 import '../style/Home.css'
 import NavHead from "./components/NavHead";
 import Calendar from "./components/Calendar";
 import TaskList from "./components/TaskList";
+
 
 const current = new Date();
 const date = current.getDate();
@@ -56,11 +58,58 @@ function num_to_month(n){
 }
 
 function Home(){
+    const [sidebarOn, setSidebarOn] = useState(false);
+    const [dark, setDark] = useState(false);
+    function enableSidebar(){
+        setSidebarOn(true);
+    }
+
+    function disableSidebar(){
+        setSidebarOn(false);
+    }
+
+    function changeVisualMode(checked){
+        console.log(checked);
+        if (checked){
+            setDark(dark => true);
+        }
+        else{
+            setDark(dark => false);
+        }
+    }
+
+    function changeVisualModeSmall(isDark){
+        setDark(!isDark);
+    }
+
+    console.log(dark);
+
     return (
         <div className={"gsc_div"}>
-            <Container fluid className={"gscal"}>
-                <NavHead/>
+            <Container fluid className={"gscal sidebar_" + sidebarOn.toString() + " darkMode_" + dark.toString()}>
+                <NavHead enableSidebar={enableSidebar} dark={dark} isDark={changeVisualModeSmall}/>
                 <Row className={"contents"}>
+                    <div className={"sidebar_" + sidebarOn.toString() + " sidebar darkMode_" + dark.toString()}>
+                        <img className={"mt-4 mb-3 rounded-circle profile_img"} src={"https://icon-library.com/images/anonymous-user-icon/anonymous-user-icon-2.jpg"}></img>
+                        <h3 className={"mb-3"}>Student</h3>
+                        <ul className={"sidebar_options"}>
+                            <li className={"mb-1 fs-5"}>My Profile</li>
+                            <li className={"mb-1 fs-5"}>Settings</li>
+                            <li className={"fs-5"}>
+                                <div>
+                                    <label className="form-check-label" htmlFor="flexSwitchCheckDefault">
+                                        Dark Mode
+                                    </label>
+                                </div>
+                                <div className="form-check form-switch d_mode_switch">
+                                    <input id="visualModeSelect" className="form-check-input" type="checkbox" role="switch"
+                                           onChange={(e)=>{changeVisualMode(e.target.checked)}}/>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div className={"sidebar_" +  sidebarOn.toString() + " sidebar_other"} onClick={(e)=>disableSidebar()}>
+                    </div>
                     <Col lg={8} className={"px-0 cal_col"}>
                         <Calendar month_num={month_num} year={year} current_wk_start={current_wk_start} num_to_month={num_to_month}/>
                         <a id="cal_dnload" href="test_cal.ics" download="test_calendar">
@@ -72,7 +121,8 @@ function Home(){
                     <Col lg={4} className={"px-0 pt-lg-4 pt-md-0 list_col"}>
                         <TaskList month_num={month_num} year={year} current_wk_start={current_wk_start}/>
                         <div className={"mt-lg-4 dl_button_group"}>
-                            <a href={"/gscal_front_end/#/wk_overview"} className={"mb-3 shadow-none btn btn-primary"}>view weekly overview</a>
+                            <a href={"/gscal_front_end/#/wk_overview"} className={"mb-3 shadow-none btn btn-primary"}>
+                                view weekly overview</a>
                         </div>
                     </Col>
                 </Row>
