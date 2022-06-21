@@ -720,20 +720,27 @@
 }
 
 
-.sidebar_false .sidebar{
+#darkMode_false{
     background-color: #F4F8F9;
-    position: fixed;
-    height: 100vh;
-    width: 25%;
     border-right-style: solid;
     border-width: 1px;
     border-color: #B5C4C5;
-    transition: .4s;
-    left: -25%;
 }
 
-.darkMode_true .sidebar_false .sidebar{
+#darkMode_true{
+    background-color: #293232;
+    border-right-style: solid;
+    border-width: 1px;
+    border-color: #182020;
+    color: #bcd6d5;
+}
 
+.sidebar_false .sidebar{
+    position: fixed;
+    height: 100vh;
+    width: 25%;
+    transition: .4s;
+    left: -25%;
 }
 
 .sidebar_false .sidebar_other{
@@ -741,13 +748,9 @@
 }
 
 .sidebar_true .sidebar {
-    background-color: #F4F8F9;
     position: fixed;
     height: 100vh;
     width: 25%;
-    border-right-style: solid;
-    border-width: 1px;
-    border-color: #B5C4C5;
     transition: .4s;
     left: 0;
 }
@@ -770,6 +773,31 @@
     list-style: none;
     padding-left: 0;
 }
+
+.form-check-input{
+    background-color: #dee2e6;
+    border: none;
+}
+
+.form-check-input:focus{
+    border-color: #07A2A1;
+    box-shadow: 0 0 0 0.25rem rgb(7 162 161 / 25%);
+}
+
+
+.form-switch .form-check-input:focus{
+    background-image: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%27-4 -4 8 8%27%3e%3ccircle r=%273%27 fill=%27rgba%280, 0, 0, 0.25%29%27/%3e%3c/svg%3e");
+}
+
+.form-check-input:checked{
+    background-color: #597977;
+}
+
+.form-switch .form-check-input:checked{
+    background-image: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%27-4 -4 8 8%27%3e%3ccircle r=%273%27 fill=%27%23fff%27/%3e%3c/svg%3e");
+}
+
+
 
 .d_mode_switch{
     margin-left: 43%;

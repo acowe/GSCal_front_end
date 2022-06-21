@@ -4,6 +4,7 @@ import '../style/Home.css'
 import NavHead from "./components/NavHead";
 import Calendar from "./components/Calendar";
 import TaskList from "./components/TaskList";
+import SideBar from "./components/SideBar";
 
 
 const current = new Date();
@@ -89,25 +90,7 @@ function Home(){
             <Container fluid className={"gscal sidebar_" + sidebarOn.toString() + " darkMode_" + dark.toString()}>
                 <NavHead enableSidebar={enableSidebar} dark={dark} isDark={changeVisualModeSmall}/>
                 <Row className={"contents"}>
-                    <div className={"sidebar_" + sidebarOn.toString() + " sidebar darkMode_" + dark.toString()}>
-                        <img className={"mt-4 mb-3 rounded-circle profile_img"} src={"https://icon-library.com/images/anonymous-user-icon/anonymous-user-icon-2.jpg"}></img>
-                        <h3 className={"mb-3"}>Student</h3>
-                        <ul className={"sidebar_options"}>
-                            <li className={"mb-1 fs-5"}>My Profile</li>
-                            <li className={"mb-1 fs-5"}>Settings</li>
-                            <li className={"fs-5"}>
-                                <div>
-                                    <label className="form-check-label" htmlFor="flexSwitchCheckDefault">
-                                        Dark Mode
-                                    </label>
-                                </div>
-                                <div className="form-check form-switch d_mode_switch">
-                                    <input id="visualModeSelect" className="form-check-input" type="checkbox" role="switch"
-                                           onChange={(e)=>{changeVisualMode(e.target.checked)}}/>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+                    <SideBar dark={dark} sidebarOn={sidebarOn} changeVisualMode={changeVisualMode}/>
                     <div className={"sidebar_" +  sidebarOn.toString() + " sidebar_other"} onClick={(e)=>disableSidebar()}>
                     </div>
                     <Col lg={8} className={"px-0 cal_col"}>
