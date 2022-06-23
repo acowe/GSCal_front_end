@@ -49,13 +49,20 @@ function CalWeek(props){
 
     return(
         <Row className={"mx-0 " + props.wk_type}>
-            <CalDay startArr={startArr} day_type={"cal_sun"}   day_of_month={thisWeekDates[0]} day_of_week={"sunday1"}  />
-            <CalDay startArr={startArr} day_type={"cal_wkday"} day_of_month={thisWeekDates[1]} day_of_week={"monday"} />
-            <CalDay startArr={startArr} day_type={"cal_wkday"} day_of_month={thisWeekDates[2]} day_of_week={"tuesday"} />
-            <CalDay startArr={startArr} day_type={"cal_wkday"} day_of_month={thisWeekDates[3]} day_of_week={"wednesday"}/>
-            <CalDay startArr={startArr} day_type={"cal_wkday"} day_of_month={thisWeekDates[4]} day_of_week={"thursday"} />
-            <CalDay startArr={startArr} day_type={"cal_wkday"} day_of_month={thisWeekDates[5]} day_of_week={"friday"} />
-            <CalDay startArr={startArr} day_type={"cal_sat"} day_of_month={thisWeekDates[6]} day_of_week={"saturday"} />
+            <CalDay startArr={startArr} day_type={"cal_sun"} dayNum={props.wkNum} day_of_month={thisWeekDates[0]} day_of_week={"sunday1"}
+                    filter={props.filter} eventOn={props.eventOn} enableEventOn={props.enableEventOn} eventOnFor={props.eventOnFor}/>
+            <CalDay startArr={startArr} day_type={"cal_wkday"} dayNum={props.wkNum+1} day_of_month={thisWeekDates[1]} day_of_week={"monday"}
+                    filter={props.filter} eventOn={props.eventOn} enableEventOn={props.enableEventOn} eventOnFor={props.eventOnFor}/>
+            <CalDay startArr={startArr} day_type={"cal_wkday"} dayNum={props.wkNum+2} day_of_month={thisWeekDates[2]} day_of_week={"tuesday"}
+                    filter={props.filter} eventOn={props.eventOn} enableEventOn={props.enableEventOn} eventOnFor={props.eventOnFor}/>
+            <CalDay startArr={startArr} day_type={"cal_wkday"} dayNum={props.wkNum+3} day_of_month={thisWeekDates[3]} day_of_week={"wednesday"}
+                    filter={props.filter} eventOn={props.eventOn} enableEventOn={props.enableEventOn} eventOnFor={props.eventOnFor}/>
+            <CalDay startArr={startArr} day_type={"cal_wkday"} dayNum={props.wkNum+4} day_of_month={thisWeekDates[4]} day_of_week={"thursday"}
+                    filter={props.filter} eventOn={props.eventOn} enableEventOn={props.enableEventOn} eventOnFor={props.eventOnFor}/>
+            <CalDay startArr={startArr} day_type={"cal_wkday"} dayNum={props.wkNum+5} day_of_month={thisWeekDates[5]} day_of_week={"friday"}
+                    filter={props.filter} eventOn={props.eventOn} enableEventOn={props.enableEventOn} eventOnFor={props.eventOnFor}/>
+            <CalDay startArr={startArr} day_type={"cal_sat"} dayNum={props.wkNum+6} day_of_month={thisWeekDates[6]} day_of_week={"saturday"}
+                    filter={props.filter} eventOn={props.eventOn} enableEventOn={props.enableEventOn} eventOnFor={props.eventOnFor}/>
         </Row>
     );
 }

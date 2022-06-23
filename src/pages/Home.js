@@ -60,8 +60,13 @@ function num_to_month(n){
 
 function Home(){
     const [sidebarOn, setSidebarOn] = useState(false);
+    const [eventOn, setEventOn] = useState(false);
+    const [selectedEvent, setSelectedEvent] = useState("");
+    const [eventOnFor, setEventOnFor] = useState(-1);
     const [dark, setDark] = useState(false);
+
     function enableSidebar(){
+        disableEventOn();
         setSidebarOn(true);
     }
 
@@ -83,18 +88,34 @@ function Home(){
         setDark(!isDark);
     }
 
-    console.log(dark);
+    function enableEventOn(id){
+        setSelectedEvent(id);
+        setEventOn(true);
+        setEventOnFor()
+    }
+
+    function disableEventOn(){
+        if(eventOn){
+            let element = document.getElementById(selectedEvent);
+            element.classList.remove("event_card_true");
+            element.classList.add("event_card_false");
+            setEventOn(false);
+        }
+    }
+
+    console.log(selectedEvent);
 
     return (
         <div className={"gsc_div"}>
-            <Container fluid className={"gscal sidebar_" + sidebarOn.toString() + " darkMode_" + dark.toString()}>
+            <Container fluid className={"gscal sidebar_" + sidebarOn.toString() +" darkMode_" + dark.toString()}>
                 <NavHead enableSidebar={enableSidebar} dark={dark} isDark={changeVisualModeSmall}/>
-                <Row className={"contents"}>
+                <Row id={"eventOn_" + eventOn.toString()} className={"contents"} onClick={(e)=>disableEventOn()}>
                     <SideBar dark={dark} sidebarOn={sidebarOn} changeVisualMode={changeVisualMode}/>
                     <div className={"sidebar_" +  sidebarOn.toString() + " sidebar_other"} onClick={(e)=>disableSidebar()}>
                     </div>
                     <Col lg={8} className={"px-0 cal_col"}>
-                        <Calendar month_num={month_num} year={year} current_wk_start={current_wk_start} num_to_month={num_to_month}/>
+                        <Calendar month_num={month_num} year={year} current_wk_start={current_wk_start} num_to_month={num_to_month}
+                                  eventOn={eventOn} enableEventOn={enableEventOn} eventOnFor={eventOnFor}/>
                         <a id="cal_dnload" href="test_cal.ics" download="test_calendar">
                             <button style={{width:"40%"}} className={"shadow-none btn btn-primary"}>
                                 download calendar

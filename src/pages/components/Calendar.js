@@ -1,6 +1,7 @@
 import {Container, Row, Col} from "react-bootstrap";
 import CalWeek from "./CalWeek";
 import CalCourses from "./CalCourses"
+import {useState} from "react";
 
 function num_to_month(n){
     switch (n) {
@@ -49,10 +50,30 @@ function daysInMonth (month, year) { // Use 1 for January, 2 for February, etc.
     return new Date(year, month, 0).getDate();
 }
 
+
+
 function Calendar(props){
+    const courseList = ["chem", "math", "phys", "bio", "csci"];
+    const courseNameMap = [["",""], ["chem", "HMC Chemistry 23B SP22"],["math", "HMC Math 73 SP22"],
+        ["phys", "HMC Phys 24 Sec 1-8 SP22"], ["bio", "Bio 52"], ["csci", "CS 60 Spring 2020"]];
     const month = props.num_to_month(props.month_num);
     const numDayInMonth = daysInMonth(props.month_num, props.year);
-    const courseList = ["chem", "math", "phys", "bio", "csci"];
+    const [filter, setCourseFilter] = useState(["",""]);
+
+    function changeFilter(elem_id){
+        if(elem_id == filter[0]){
+            setCourseFilter(["",""]);
+        }
+        else{
+            for (let i=0; i < courseNameMap.length; i++){
+                if(courseNameMap[i][0] == elem_id){
+                    setCourseFilter(courseNameMap[i]);
+                    return;
+                }
+            }
+            setCourseFilter(["",""]);
+        }
+    }
 
     return(
         <div className={"mx-md-5 mx-3 my-3 my-md-4 mt-lg-4 mb-lg-3 pb-2 pb-lg-4 pb-xl-3 cal_card"}>
@@ -88,13 +109,18 @@ function Calendar(props){
                 </Col>
             </Row>
             <Container className={"mx-sm-0 px-0 cal"}>
-                <CalWeek month={props.month_num} year={props.year} dayInMonth={numDayInMonth} wk_type={"cal_wk_fst"} wk_of={props.current_wk_start} />
-                <CalWeek month={props.month_num} year={props.year} dayInMonth={numDayInMonth} wk_type={"cal_wk"} wk_of={props.current_wk_start+7} />
-                <CalWeek month={props.month_num} year={props.year} dayInMonth={numDayInMonth} wk_type={"cal_wk"} wk_of={props.current_wk_start+14} />
-                <CalWeek month={props.month_num} year={props.year} dayInMonth={numDayInMonth} wk_type={"cal_wk"} wk_of={props.current_wk_start+21}/>
-                <CalWeek month={props.month_num} year={props.year} dayInMonth={numDayInMonth} wk_type={"cal_wk_last"} wk_of={props.current_wk_start+28}/>
+                <CalWeek month={props.month_num} year={props.year} dayInMonth={numDayInMonth} wk_type={"cal_wk_fst"} wkNum={1} wk_of={props.current_wk_start}
+                         filter={filter[1]} eventOn={props.eventOn} enableEventOn={props.enableEventOn} eventOnFor={props.eventOnFor} />
+                <CalWeek month={props.month_num} year={props.year} dayInMonth={numDayInMonth} wk_type={"cal_wk snd"} wkNum={8} wk_of={props.current_wk_start+7}
+                         filter={filter[1]} eventOn={props.eventOn} enableEventOn={props.enableEventOn} eventOnFor={props.eventOnFor}/>
+                <CalWeek month={props.month_num} year={props.year} dayInMonth={numDayInMonth} wk_type={"cal_wk trd"} wkNum={15} wk_of={props.current_wk_start+14}
+                         filter={filter[1]} eventOn={props.eventOn} enableEventOn={props.enableEventOn} eventOnFor={props.eventOnFor}/>
+                <CalWeek month={props.month_num} year={props.year} dayInMonth={numDayInMonth} wk_type={"cal_wk frt"} wkNum={22} wk_of={props.current_wk_start+21}
+                         filter={filter[1]} eventOn={props.eventOn} enableEventOn={props.enableEventOn} eventOnFor={props.eventOnFor}/>
+                <CalWeek month={props.month_num} year={props.year} dayInMonth={numDayInMonth} wk_type={"cal_wk_last"} wkNum={29} wk_of={props.current_wk_start+28}
+                         filter={filter[1]} eventOn={props.eventOn} enableEventOn={props.enableEventOn} eventOnFor={props.eventOnFor} />
             </Container>
-            <CalCourses courseList={courseList}/>
+            <CalCourses courseList={courseList} changeFilter={changeFilter} filter={filter[0]}/>
         </div>
 
     );

@@ -26,7 +26,7 @@ function CalDay(props){
             await getAssignmentsForDay(week);
         }
         else{
-            await getAssignmentsForDay("week_2");
+            await getAssignmentsForDay("week_2","");
         }
     }
     async function getAssignmentsForDay(week){
@@ -36,30 +36,89 @@ function CalDay(props){
         const querySnap = await getDocs(assignQuery);
         let assignArr = querySnap.docs.map(doc => doc.data().name);
         let courseArr =  querySnap.docs.map(doc => doc.data().course);
-        setNumAssign(assignArr.length);
+        let dueArr = querySnap.docs.map(doc => doc.data().due);
         setAssignments(assignArr);
         setCourses(courseArr);
+        setDues(dueArr);
     }
 
-    const [numAssign, setNumAssign] = useState(-1);
+    function filterCount(courseName){
+        if (courseName != ""){
+            let filteredCourses = courses.filter(c => (c == courseName));
+            return filteredCourses.length;
+        }
+        else{
+            return assignments.length;
+        }
+    }
+
+    function eventOn(id, dayNum){
+        console.log("d"+dayNum+id);
+        if (!props.eventOn){
+            const element = document.getElementById("d"+dayNum+id);
+            element.classList.remove("event_card_false");
+            element.classList.add("event_card_true");
+            props.enableEventOn("d"+dayNum+id);
+        }
+    }
+
+    function displayEC(){
+       const element = document.getElementById()
+    }
+
+
+    const dayNum = props.dayNum;
     const [assignments, setAssignments] = useState([]);
     const [courses, setCourses] = useState([]);
+    const [dues, setDues] = useState([]);
+    const courseFilter = props.filter;
     const displayAssignments = assignments.map((a,i) =>
     {
         let course = courses[i];
-        return (<li key={i} className={course}><div className={"to_do_text"}>{a}</div></li>);
+        let due = dues[i];
+        let time = new Date(due.seconds*1000);
+        let isAm = (time.getHours() < 12)
+        let hour = (isAm ? time.getHours() : time.getHours() - 12);
+        let min = (time.getMinutes() < 10 ? "0" + time.getMinutes() : time.getMinutes());
+        let ampm = (isAm ? "AM": "PM")
+        if (courseFilter == ""){
+            return (<li id={"a"+i} key={i} className={course}
+                        onClick={(e)=> eventOn(e.target.id,dayNum)} >
+                <div id={"d"+dayNum+"a"+i} className={"py-2 px-3 event_card_false"}>
+                    <h6>{a}</h6>
+                    <p className={"my-0 text-start"}>Course: {course}</p>
+                    <p className={"text-start"}>Due: {hour +  ":" + min + " " + ampm}</p>
+                </div>
+                <div className={"to_do_text"}>{a}</div>
+            </li>);
+        }
+        else{
+            if (course == courseFilter){
+                return (<li id={"a"+i} key={i} className={course}
+                            onClick={(e)=> eventOn(e.target.id,dayNum)}>
+                    <div id={"d"+dayNum+"a"+i} className={"py-2 px-3 event_card_false"}>
+                        <h6>{a}</h6>
+                        <p className={"my-0 text-start"}>Course: {course}</p>
+                        <p className={"text-start"}>Due: {hour +  ":" + min + " " + ampm}</p>
+                    </div>
+                    <div className={"to_do_text"}>{a}</div>
+                </li>);
+            }
+        }
     });
+
+
 
     useEffect(() =>
         {
             getAssignments();
+            console.log("yee")
         }, []
     );
-
     return(
         <Col style={{width:"14.28%"}} className={"px-0 " + props.day_type}>
             <p className={"mb-0 pe-1 text-end cal_date"}>{props.day_of_month}</p>
-            <div className={"cal_content "+ ((numAssign > 3) && "many")}>
+            <div className={"cal_content "+ ((filterCount(courseFilter) > 3) && "many")}>
                 <ul>
                     {displayAssignments}
                 </ul>
