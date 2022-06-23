@@ -52,13 +52,12 @@ function CalDay(props){
         }
     }
 
-    function eventOn(id, dayNum){
-        console.log("d"+dayNum+id);
+    function eventOn(id, dayNum){;
         if (!props.eventOn){
-            const element = document.getElementById("d"+dayNum+id);
-            element.classList.remove("event_card_false");
-            element.classList.add("event_card_true");
-            props.enableEventOn("d"+dayNum+id);
+            const element2 = document.getElementById("d"+id);
+            element2.classList.remove("event_card_false");
+            element2.classList.add("event_card_true");
+            props.enableEventOn(id);
         }
     }
 
@@ -68,10 +67,10 @@ function CalDay(props){
 
 
     const dayNum = props.dayNum;
+    const courseFilter = props.filter;
     const [assignments, setAssignments] = useState([]);
     const [courses, setCourses] = useState([]);
     const [dues, setDues] = useState([]);
-    const courseFilter = props.filter;
     const displayAssignments = assignments.map((a,i) =>
     {
         let course = courses[i];
@@ -80,23 +79,27 @@ function CalDay(props){
         let isAm = (time.getHours() < 12)
         let hour = (isAm ? time.getHours() : time.getHours() - 12);
         let min = (time.getMinutes() < 10 ? "0" + time.getMinutes() : time.getMinutes());
-        let ampm = (isAm ? "AM": "PM")
+        let ampm = (isAm ? "AM": "PM");
+        let select = props.selected,
+            selDay = (select.length == 0 ? -1 : Number(select.split("a")[0])),
+            selAssign = (select.length == 0 ? -1 : Number(select.split("a")[1]));
+
         if (courseFilter == ""){
-            return (<li id={"a"+i} key={i} className={course}
-                        onClick={(e)=> eventOn(e.target.id,dayNum)} >
-                <div id={"d"+dayNum+"a"+i} className={"py-2 px-3 event_card_false"}>
-                    <h6>{a}</h6>
-                    <p className={"my-0 text-start"}>Course: {course}</p>
-                    <p className={"text-start"}>Due: {hour +  ":" + min + " " + ampm}</p>
-                </div>
-                <div className={"to_do_text"}>{a}</div>
-            </li>);
-        }
-        else{
-            if (course == courseFilter){
-                return (<li id={"a"+i} key={i} className={course}
-                            onClick={(e)=> eventOn(e.target.id,dayNum)}>
-                    <div id={"d"+dayNum+"a"+i} className={"py-2 px-3 event_card_false"}>
+            if(dayNum == selDay && i == selAssign){
+                return (<li id={dayNum.toString()+"a"+i} key={i} className={course + " eventOn_false"}
+                            onClick={(e)=> eventOn(e.target.id,dayNum)} >
+                    <div id={"d"+dayNum+"a"+i} className={"py-2 px-3 " + props.day_of_week + " event_card_false"}>
+                        <h6>{a}</h6>
+                        <p className={"my-0 text-start"}>Course: {course}</p>
+                        <p className={"text-start"}>Due: {hour +  ":" + min + " " + ampm}</p>
+                    </div>
+                    <div className={"to_do_text"}>{a}</div>
+                </li>);
+            }
+            else{
+                return (<li id={dayNum.toString()+"a"+i} key={i} className={course + " eventOn_"+props.eventOn.toString()}
+                            onClick={(e)=> eventOn(e.target.id,dayNum)} >
+                    <div id={"d"+dayNum+"a"+i} className={"py-2 px-3 " + props.day_of_week + " event_card_false"}>
                         <h6>{a}</h6>
                         <p className={"my-0 text-start"}>Course: {course}</p>
                         <p className={"text-start"}>Due: {hour +  ":" + min + " " + ampm}</p>
@@ -105,16 +108,41 @@ function CalDay(props){
                 </li>);
             }
         }
+        else{
+            if (course == courseFilter){
+                if(dayNum == selDay && i == selAssign){
+                    return (<li id={dayNum.toString()+"a"+i} key={i} className={course + " eventOn_false"}
+                                onClick={(e)=> eventOn(e.target.id,dayNum)} >
+                        <div id={"d"+dayNum+"a"+i} className={"py-2 px-3 " + props.day_of_week + " event_card_false"}>
+                            <h6>{a}</h6>
+                            <p className={"my-0 text-start"}>Course: {course}</p>
+                            <p className={"text-start"}>Due: {hour +  ":" + min + " " + ampm}</p>
+                        </div>
+                        <div className={"to_do_text"}>{a}</div>
+                    </li>);
+                }
+                else{
+                    return (<li id={dayNum.toString()+"a"+i} key={i} className={course + " eventOn_" + props.eventOn.toString()}
+                                onClick={(e)=> eventOn(e.target.id,dayNum)} >
+                        <div id={"d"+dayNum+"a"+i} className={"py-2 px-3 " + props.day_of_week + " event_card_false"}>
+                            <h6>{a}</h6>
+                            <p className={"my-0 text-start"}>Course: {course}</p>
+                            <p className={"text-start"}>Due: {hour +  ":" + min + " " + ampm}</p>
+                        </div>
+                        <div className={"to_do_text"}>{a}</div>
+                    </li>);
+                }
+            }
+        }
     });
-
-
 
     useEffect(() =>
         {
             getAssignments();
-            console.log("yee")
+
         }, []
     );
+
     return(
         <Col style={{width:"14.28%"}} className={"px-0 " + props.day_type}>
             <p className={"mb-0 pe-1 text-end cal_date"}>{props.day_of_month}</p>

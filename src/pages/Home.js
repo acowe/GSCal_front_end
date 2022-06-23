@@ -91,14 +91,15 @@ function Home(){
     function enableEventOn(id){
         setSelectedEvent(id);
         setEventOn(true);
-        setEventOnFor()
     }
 
     function disableEventOn(){
         if(eventOn){
-            let element = document.getElementById(selectedEvent);
-            element.classList.remove("event_card_true");
-            element.classList.add("event_card_false");
+            let element1 = document.getElementById(selectedEvent);
+            let element2 = document.getElementById("d"+selectedEvent);
+            element1.classList.remove("selected")
+            element2.classList.remove("event_card_true");
+            element2.classList.add("event_card_false");
             setEventOn(false);
         }
     }
@@ -115,7 +116,7 @@ function Home(){
                     </div>
                     <Col lg={8} className={"px-0 cal_col"}>
                         <Calendar month_num={month_num} year={year} current_wk_start={current_wk_start} num_to_month={num_to_month}
-                                  eventOn={eventOn} enableEventOn={enableEventOn} eventOnFor={eventOnFor}/>
+                                  eventOn={eventOn} enableEventOn={enableEventOn} eventOnFor={eventOnFor} selected={selectedEvent}/>
                         <a id="cal_dnload" href="test_cal.ics" download="test_calendar">
                             <button style={{width:"40%"}} className={"shadow-none btn btn-primary"}>
                                 download calendar

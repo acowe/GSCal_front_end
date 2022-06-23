@@ -437,12 +437,15 @@
     opacity: 50%;
 }
 
-.course_1, .Chemistry{
+
+
+.course_1, .Chemistry, .eventOn_false{
     text-align: center;
     padding-left: 1.7rem;
     padding-right: 1.7rem;
     background-color: #07A2A1;
 }
+
 
 .course_2, .Math{
     text-align: center;
@@ -472,6 +475,7 @@
     padding-right: 1.7rem;
     background-color: #b5c5c5;
 }
+
 
 
 .list_col{
@@ -741,6 +745,7 @@
 }
 
 .sidebar_false .sidebar{
+    visibility: hidden;
     position: fixed;
     height: 100vh;
     width: 25%;
@@ -811,17 +816,15 @@
     display: none;
 }
 
-.contents .eventOn_true{
-    background: red;
-}
-
 
 .event_card_false{
     display: none;
 }
 
+
 .event_card_true{
     position: absolute;
+    z-index: 1;
     background-color: white;
     top:25%;
     /*border: solid #c3cace 1px;*/
@@ -829,31 +832,154 @@
     box-shadow: 3px 3px 2px 3px rgba(0, 0, 0, 0.2);
 }
 
+
 .darkMode_true .event_card_true{
     background-color: #293232;
     color: #bcd6d5;
 }
 
 
-.snd .event_card_true{
-    top:36%
+@media (min-height: 830px) {
+    .cal_wk_fst .event_card_true{
+        top:25%;
+    }
+    .snd .event_card_true{
+        top:36%
+    }
+
+    .trd .event_card_true{
+        top:48%
+    }
+
+    .frt .event_card_true{
+        top: 59%;
+    }
+
+    .cal_wk_last .event_card_true{
+        top: 71%
+    }
 }
 
-.trd .event_card_true{
-    top:48%
+@media(max-height: 829px){
+    .cal_wk_fst .event_card_true{
+        top:26%;
+    }
+    .snd .event_card_true{
+        top:39%
+    }
+
+    .trd .event_card_true{
+        top:51%
+    }
+
+    .frt .event_card_true{
+        top: 63%;
+    }
+
+    .cal_wk_last .event_card_true{
+        top:75%
+    }
 }
 
-.frt .event_card_true{
-    top: 59%;
+.sunday1{
+    left: 10%;
 }
 
-.cal_wk_last .event_card_true{
-    top:71%
+.wednesday{
+    left: 25%
 }
 
-.selected{
-    visibility: visible;
+.thursday{
+    left: 30%;
 }
+
+.friday{
+    left: 38%;
+}
+
+.saturday{
+   left: 50%;
+}
+
+@media (min-width:577px) and (max-width: 991px){
+
+    .cal_wk_fst .event_card_true{
+        top:26%;
+    }
+    .snd .event_card_true{
+        top:39%
+    }
+
+    .trd .event_card_true{
+        top:49%
+    }
+
+    .frt .event_card_true{
+        top: 63%;
+    }
+
+    .cal_wk_last .event_card_true{
+        top:75%
+    }
+
+    .wednesday{
+        left: 33%
+    }
+
+    .thursday{
+        left: 35%;
+    }
+
+    .friday{
+        left: 48%;
+    }
+
+    .saturday{
+        left: 70%;
+    }
+}
+
+@media (max-width: 575px){
+    .cal_wk_fst .event_card_true{
+        top: 19%;
+    }
+    .snd .event_card_true{
+        top: 28%
+    }
+
+    .trd .event_card_true{
+        top: 41%
+    }
+
+    .frt .event_card_true{
+        top: 63%;
+    }
+
+    .cal_wk_last .event_card_true{
+        top:75%
+    }
+
+    .wednesday{
+        left: 20%
+    }
+
+    .thursday{
+        left: 25%;
+    }
+
+    .friday{
+        left: 28%;
+    }
+
+    .saturday{
+        left: 50%;
+    }
+}
+
+.eventOn_true{
+    opacity: 50%;
+}
+
 
 
 
