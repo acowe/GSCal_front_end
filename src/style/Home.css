@@ -824,6 +824,7 @@
 
 .event_card_true{
     position: absolute;
+    max-width: 280px;
     z-index: 1;
     background-color: white;
     top:25%;
@@ -941,22 +942,30 @@
 
 @media (max-width: 575px){
     .cal_wk_fst .event_card_true{
-        top: 19%;
+        top: 13%;
     }
     .snd .event_card_true{
-        top: 28%
+        top: 23%
     }
 
     .trd .event_card_true{
-        top: 41%
+        top: 33%
     }
 
     .frt .event_card_true{
-        top: 63%;
+        top: 43%;
     }
 
     .cal_wk_last .event_card_true{
-        top:75%
+        top:53%
+    }
+
+    .monday{
+        left: 10%
+    }
+
+    .tuesday{
+        left: 13%;
     }
 
     .wednesday{
@@ -964,15 +973,15 @@
     }
 
     .thursday{
-        left: 25%;
+        left: 15%;
     }
 
     .friday{
-        left: 28%;
+        left: 18%;
     }
 
     .saturday{
-        left: 50%;
+        left: 28%;
     }
 }
 
@@ -980,8 +989,13 @@
     opacity: 50%;
 }
 
+.darkMode_true .eventOn_true{
+    opacity: 30%;
+}
 
-
+.assign_title{
+    overflow-wrap: break-word;
+}
 
 
 

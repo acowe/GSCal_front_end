@@ -15,6 +15,49 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+function num_to_month(n){
+    switch (n) {
+        case 1:
+            return "January";
+            break;
+        case 2:
+            return "February";
+            break;
+        case 3:
+            return "March";
+            break;
+        case 4:
+            return "April";
+            break;
+        case 5:
+            return "May";
+            break;
+        case 6:
+            return "June";
+            break;
+        case 7:
+            return "July";
+            break;
+        case 8:
+            return "August";
+            break;
+        case 9:
+            return "September";
+            break;
+        case 10:
+            return "October";
+            break;
+        case 11:
+            return "November";
+            break;
+        case 12:
+            return "December";
+            break;
+        default:
+            return "month";
+    }
+}
+
 function CalDay(props){
     async function getAssignments(){
         const colRef = collection(db, "GSCalTestCol", "testCalData", "testWeeks");
@@ -76,6 +119,8 @@ function CalDay(props){
         let course = courses[i];
         let due = dues[i];
         let time = new Date(due.seconds*1000);
+        let month = num_to_month(time.getMonth()+1);
+        console.log(month);
         let isAm = (time.getHours() < 12)
         let hour = (isAm ? time.getHours() : time.getHours() - 12);
         let min = (time.getMinutes() < 10 ? "0" + time.getMinutes() : time.getMinutes());
@@ -88,10 +133,10 @@ function CalDay(props){
             if(dayNum == selDay && i == selAssign){
                 return (<li id={dayNum.toString()+"a"+i} key={i} className={course + " eventOn_false"}
                             onClick={(e)=> eventOn(e.target.id,dayNum)} >
-                    <div id={"d"+dayNum+"a"+i} className={"py-2 px-3 " + props.day_of_week + " event_card_false"}>
-                        <h6>{a}</h6>
-                        <p className={"my-0 text-start"}>Course: {course}</p>
-                        <p className={"text-start"}>Due: {hour +  ":" + min + " " + ampm}</p>
+                    <div id={"d"+dayNum+"a"+i} className={"py-2 px-3 " + props.day_of_week + " event_card_false text-wrap"}>
+                        <h5>{a}</h5>
+                        <p className={"my-0 text-start fs-6"}>Course: {course}</p>
+                        <p className={"text-start fs-6"}>Due: {month + " " + props.day_of_month + ", " + hour +  ":" + min + " " + ampm}</p>
                     </div>
                     <div className={"to_do_text"}>{a}</div>
                 </li>);
@@ -99,10 +144,10 @@ function CalDay(props){
             else{
                 return (<li id={dayNum.toString()+"a"+i} key={i} className={course + " eventOn_"+props.eventOn.toString()}
                             onClick={(e)=> eventOn(e.target.id,dayNum)} >
-                    <div id={"d"+dayNum+"a"+i} className={"py-2 px-3 " + props.day_of_week + " event_card_false"}>
-                        <h6>{a}</h6>
-                        <p className={"my-0 text-start"}>Course: {course}</p>
-                        <p className={"text-start"}>Due: {hour +  ":" + min + " " + ampm}</p>
+                    <div id={"d"+dayNum+"a"+i} className={"py-2 px-3 " + props.day_of_week + " event_card_false text-wrap"}>
+                        <h5>{a}</h5>
+                        <p className={"my-0 text-start fs-6"}>Course: {course}</p>
+                        <p className={"text-start fs-6"}>Due: {month + " " + props.day_of_month + ", " + hour +  ":" + min + " " + ampm}</p>
                     </div>
                     <div className={"to_do_text"}>{a}</div>
                 </li>);
@@ -113,10 +158,10 @@ function CalDay(props){
                 if(dayNum == selDay && i == selAssign){
                     return (<li id={dayNum.toString()+"a"+i} key={i} className={course + " eventOn_false"}
                                 onClick={(e)=> eventOn(e.target.id,dayNum)} >
-                        <div id={"d"+dayNum+"a"+i} className={"py-2 px-3 " + props.day_of_week + " event_card_false"}>
-                            <h6>{a}</h6>
-                            <p className={"my-0 text-start"}>Course: {course}</p>
-                            <p className={"text-start"}>Due: {hour +  ":" + min + " " + ampm}</p>
+                        <div id={"d"+dayNum+"a"+i} className={"py-2 px-3 " + props.day_of_week + " event_card_false text-wrap"}>
+                            <h5 >{a}</h5>
+                            <p className={"my-0 text-start fs-6"}>Course: {course}</p>
+                            <p className={"text-start fs-6"}>Due: {month + " " + props.day_of_month + ", " + hour +  ":" + min + " " + ampm}</p>
                         </div>
                         <div className={"to_do_text"}>{a}</div>
                     </li>);
@@ -124,10 +169,10 @@ function CalDay(props){
                 else{
                     return (<li id={dayNum.toString()+"a"+i} key={i} className={course + " eventOn_" + props.eventOn.toString()}
                                 onClick={(e)=> eventOn(e.target.id,dayNum)} >
-                        <div id={"d"+dayNum+"a"+i} className={"py-2 px-3 " + props.day_of_week + " event_card_false"}>
-                            <h6>{a}</h6>
-                            <p className={"my-0 text-start"}>Course: {course}</p>
-                            <p className={"text-start"}>Due: {hour +  ":" + min + " " + ampm}</p>
+                        <div id={"d"+dayNum+"a"+i} className={"py-2 px-3 " + props.day_of_week + " event_card_false text-wrap"}>
+                            <h5 >{a}</h5>
+                            <p className={"my-0 text-start fs-6"}>Course: {course}</p>
+                            <p className={"text-start fs-6"}>Due: {month + " " + props.day_of_month + ", " + hour +  ":" + min + " " + ampm}</p>
                         </div>
                         <div className={"to_do_text"}>{a}</div>
                     </li>);
