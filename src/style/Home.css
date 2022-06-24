@@ -330,6 +330,7 @@
     padding-top: .3rem;
     padding-bottom: .3rem;
     overflow-x: hidden;
+    cursor: pointer;
 }
 
 .many ul li{
@@ -343,6 +344,7 @@
 
 
 .to_do_text{
+    margin-bottom: 0;
     overflow-x: scroll;
 }
 
@@ -430,11 +432,16 @@
     margin-left: 1rem;
     margin-right: 1rem;
     font-size: large;
+    cursor: pointer;
 }
 
 
 .tp{
     opacity: 50%;
+}
+
+.darkMode_true .tp{
+    opacity: 30%;
 }
 
 
@@ -824,6 +831,10 @@
 
 .event_card_true{
     position: absolute;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 0.5rem;
+    padding-top: 0.75rem;
     max-width: 280px;
     z-index: 1;
     background-color: white;
@@ -831,6 +842,7 @@
     /*border: solid #c3cace 1px;*/
     border-radius: 3px;
     box-shadow: 3px 3px 2px 3px rgba(0, 0, 0, 0.2);
+    cursor: default;
 }
 
 
@@ -842,43 +854,43 @@
 
 @media (min-height: 830px) {
     .cal_wk_fst .event_card_true{
-        top:25%;
+        top:19%;
     }
     .snd .event_card_true{
-        top:36%
+        top:29%
     }
 
     .trd .event_card_true{
-        top:48%
+        top:43%
     }
 
     .frt .event_card_true{
-        top: 59%;
+        top: 54%;
     }
 
     .cal_wk_last .event_card_true{
-        top: 71%
+        top: 65%
     }
 }
 
 @media(max-height: 829px){
     .cal_wk_fst .event_card_true{
-        top:26%;
+        top:20%;
     }
     .snd .event_card_true{
-        top:39%
+        top:31%
     }
 
     .trd .event_card_true{
-        top:51%
+        top:45%
     }
 
     .frt .event_card_true{
-        top: 63%;
+        top: 57%;
     }
 
     .cal_wk_last .event_card_true{
-        top:75%
+        top:69%
     }
 }
 
@@ -905,42 +917,87 @@
 @media (min-width:577px) and (max-width: 991px){
 
     .cal_wk_fst .event_card_true{
-        top:26%;
+        top:19%;
     }
     .snd .event_card_true{
-        top:39%
+        top:31%
     }
 
     .trd .event_card_true{
-        top:49%
+        top:45%
     }
 
     .frt .event_card_true{
-        top: 63%;
+        top: 57%;
     }
 
     .cal_wk_last .event_card_true{
-        top:75%
+        top:69%
     }
 
     .wednesday{
-        left: 33%
+        left: 35%
     }
 
     .thursday{
-        left: 35%;
+        left: 40%;
     }
 
     .friday{
-        left: 48%;
+        left: 52%;
     }
 
     .saturday{
-        left: 70%;
+        left: 62%;
+    }
+}
+@media (min-width: 401px) and (max-width:576px){
+    .cal_wk_fst .event_card_true{
+        top: 13%;
+    }
+    .snd .event_card_true{
+        top: 23%
+    }
+
+    .trd .event_card_true{
+        top: 33%
+    }
+
+    .frt .event_card_true{
+        top: 43%;
+    }
+
+    .cal_wk_last .event_card_true{
+        top:53%
+    }
+
+    .monday{
+        left: 10%
+    }
+
+    .tuesday{
+        left: 13%;
+    }
+
+    .wednesday{
+        left: 25%
+    }
+
+    .thursday{
+        left: 28%;
+    }
+
+    .friday{
+        left: 35%;
+    }
+
+    .saturday{
+        left: 46%;
     }
 }
 
-@media (max-width: 575px){
+
+@media (max-width: 400px){
     .cal_wk_fst .event_card_true{
         top: 13%;
     }

@@ -20,7 +20,7 @@ function NavHead(props){
                         <i className="fa-solid fa-bars"></i>
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
-                        <Dropdown.Item href="/user">Hello student!</Dropdown.Item>
+                        <Dropdown.Item>Hello student!</Dropdown.Item>
                         <Dropdown.Item onClick={(e) => props.isDark(props.dark)}>
                             Dark Mode: {props.dark ? "On": "Off"}
                         </Dropdown.Item>
