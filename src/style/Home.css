@@ -419,6 +419,10 @@
         top:-1px;
     }
 
+    .darkMode_true .cal_days{
+        background-color: #394444;
+    }
+
     .cal_wk_fst{
         border-top-style: none;
         border-bottom-style: solid;
