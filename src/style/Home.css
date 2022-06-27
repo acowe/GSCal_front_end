@@ -294,6 +294,39 @@
     color: #86aba9;
 }
 
+.isToday_false{
+    padding-top: 0.1rem;
+    display: flex;
+    justify-content: right;
+}
+
+.isToday_false p{
+    padding-right: .2rem;
+    width: 25px;
+    text-align: center;
+}
+
+.isToday_true{
+    padding-top: 0.1rem;
+    display: flex;
+    justify-content: right;
+}
+
+.isToday_true p{
+    background-color: #07A2A1;
+    font-weight: bold;
+    padding-right: .2rem;
+    color: white;
+    width: 25px;
+    text-align: center;
+    border-radius: 20px;
+}
+
+.darkMode_true .isToday_true p{
+    color: #182020;
+    background-color: #a6bdbc;
+}
+
 
 
 .cal_content{
@@ -302,7 +335,7 @@
     max-height: 100px;
     background-color: white;
     white-space:nowrap;
-    padding-top: 0rem;
+    padding-top: .25rem;
     padding-left: 0.75rem;
     padding-right: 0.75rem;
     padding-bottom: 0.75rem;
@@ -570,8 +603,10 @@
 }
 
 @media (max-width: 400px) {
-    .task_card .task_card_contents{
-        height:100%;
+    .task_card{
+        height: 95vh;
+    }
+    .task_card_contents{
         overflow-y: scroll;
     }
 
@@ -603,6 +638,15 @@
 .task_day_list li:nth-child(odd){
     background-color: #C4EBEA;
 }
+
+.passed_true{
+    opacity: 50%;
+}
+
+.passed_true .course_text{
+    text-decoration: line-through;
+}
+
 
 .darkMode_true .task_day_list li:nth-child(odd){
     background-color: #293232;

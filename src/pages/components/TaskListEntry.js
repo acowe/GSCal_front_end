@@ -15,9 +15,39 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-function TaskListEntry(props){
-    const weekOfArr = [props.current_wk_start, props.month_num, props.year];
+function day_to_num(d){
+    switch (d) {
+        case "sunday":
+            return 7;
+            break;
+        case "monday":
+            return 1;
+            break;
+        case "tuesday":
+            return 2;
+            break;
+        case "wednesday":
+            return 3;
+            break;
+        case "thursday":
+            return 4;
+            break;
+        case "friday":
+            return 5;
+            break;
+        case "sunday":
+            return 6;
+            break;
+        default:
+            return 0;
+    }
+}
 
+function TaskListEntry(props){
+    const current = new Date(), today = (current.getDay() == 0? 7: current.getDay());
+    const weekOfArr = [props.current_wk_start, props.month_num, props.year];
+    const entryDayNum = day_to_num(props.dayOfWeek);
+    const dayPassed = (entryDayNum <= today? true: false);
 
     async function getDues(){
         const colRef = collection(db, "GSCalTestCol", "testCalData", "testWeeks");
@@ -47,6 +77,17 @@ function TaskListEntry(props){
     const [dueTimes, setDueTimes] = useState([]);
     const [error, setError] = useState(false)
     const listType = (courses.length <= 0? "none_type" : "task_day_list");
+
+    function isPast(time){
+        if (dayPassed){
+            if(time.getHours() < current.getHours()){
+               if(time.getMinutes() < current.getMinutes()){
+                   return true;
+               }
+            }
+        }
+        return false;
+    }
     const displayDue =
         dueTimes.map((t,i) =>
         {
@@ -54,8 +95,9 @@ function TaskListEntry(props){
             let isAm = (time.getHours() < 12 ? true : false)
             let hour = (isAm ? time.getHours() : time.getHours() - 12);
             let min = (time.getMinutes() < 10 ? "0" + time.getMinutes() : time.getMinutes());
-            let ampm = (isAm ? "AM": "PM")
-            return (<li>
+            let ampm = (isAm ? "AM": "PM");
+            let passed = isPast(time);
+            return (<li className={"passed_" + passed.toString()}>
                 <div className={"list_content"}>
                     <div className={"course_text"}>{courses[i]}</div>
                     <div className={"list_time"}>

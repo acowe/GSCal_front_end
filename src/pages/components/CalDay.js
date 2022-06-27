@@ -108,7 +108,9 @@ function CalDay(props){
        const element = document.getElementById()
     }
 
-
+    const current = new Date();
+    const date = current.getDate();
+    const thisMonth = current.getMonth()+1;
     const dayNum = props.dayNum;
     const courseFilter = props.filter;
     const [assignments, setAssignments] = useState([]);
@@ -120,7 +122,6 @@ function CalDay(props){
         let due = dues[i];
         let time = new Date(due.seconds*1000);
         let month = num_to_month(time.getMonth()+1);
-        console.log(month);
         let isAm = (time.getHours() < 12)
         let hour = (isAm ? time.getHours() : time.getHours() - 12);
         let min = (time.getMinutes() < 10 ? "0" + time.getMinutes() : time.getMinutes());
@@ -131,7 +132,7 @@ function CalDay(props){
         let listId = dayNum.toString()+"a"+i.toString();
 
         if (courseFilter == ""){
-            if(dayNum == selDay && i == selAssign){
+            if(dayNum === selDay && i === selAssign){
                 return (<li id={listId} key={i} className={course + " eventOn_false"}
                             onClick={(e)=> eventOn(e.target.id,dayNum)} >
                     <div id={"d"+listId} className={props.day_of_week + " event_card_false text-start text-wrap"}>
@@ -156,7 +157,7 @@ function CalDay(props){
         }
         else{
             if (course == courseFilter){
-                if(dayNum == selDay && i == selAssign){
+                if(dayNum === selDay && i === selAssign){
                     return (<li id={listId} key={i} className={course + " eventOn_false"}
                                 onClick={(e)=> eventOn(e.target.id,dayNum)} >
                         <div id={"d"+listId} className={props.day_of_week + " event_card_false text-start text-wrap"}>
@@ -191,7 +192,10 @@ function CalDay(props){
 
     return(
         <Col style={{width:"14.28%"}} className={"px-0 " + props.day_type}>
-            <p className={"mb-0 pe-1 text-end cal_date"}>{props.day_of_month}</p>
+            <div className={"px-1 isToday_" + (date == props.day_of_month && thisMonth === props.month).toString()}>
+                <p className={"my-0 mx-0 text-end cal_date"}>
+                    {props.day_of_month}</p>
+            </div>
             <div className={"cal_content "+ ((filterCount(courseFilter) > 3) && "many")}>
                 <ul className={"assign_events_list"}>
                     {displayAssignments}

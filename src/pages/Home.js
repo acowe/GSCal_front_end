@@ -15,6 +15,7 @@ const month_num = current.getMonth()+1;
 const month = num_to_month(month_num);
 const year = current.getFullYear();
 
+console.log(day);
 function num_to_month(n){
     switch (n) {
         case 1:
@@ -103,8 +104,6 @@ function Home(){
             setEventOn(false);
         }
     }
-
-    console.log(selectedEvent);
 
     return (
         <div className={"gsc_div"}>
