@@ -143,7 +143,6 @@
     padding-right: 2rem;
     border-radius: 10px;
     box-shadow: 15px 15px 20px #057a77;
-
 }
 
 .darkMode_true .cal_card{
@@ -175,7 +174,6 @@
     border-style: solid;
     border-width: 2px;
     border-color: #07A2A1;
-
 }
 
 @media (min-width: 1170px){
@@ -221,6 +219,7 @@
 
     }
 }
+
 
 .cal_days{
     letter-spacing: .02rem;
@@ -285,6 +284,7 @@
 .darkMode_true .cal,.darkMode_true .cal_wk_fst,.darkMode_true .cal_wk,.darkMode_true .cal_wk_last,.darkMode_true .cal_sun,.darkMode_true .cal_wkday,.darkMode_true .cal_sat{
     border-color: #597977;
 }
+
 
 .cal_date{
     color: #696d6e;
@@ -381,9 +381,9 @@
     overflow-x: scroll;
 }
 
-@media (max-width: 625px){
+@media (min-width: 451px) and (max-width: 625px){
     .cal_content{
-        padding-top: 0rem;
+        padding-top: .3rem;
         padding-left: 0.3rem;
         padding-right: 0.3rem;
         padding-bottom: 0.3rem;
@@ -399,6 +399,86 @@
         display: none;
     }
 }
+
+@media (max-width: 450px) {
+
+    .cal_stuff_immovable{
+        margin-top: 0.5rem;
+        height: 40vh;
+        overflow-x: scroll;
+        overflow-y: scroll;
+    }
+    .cal_stuff_movable {
+        width: 230%;
+        position: relative;
+    }
+
+    .cal_days{
+        background-color: white;
+        position: sticky;
+        top:-1px;
+    }
+
+    .cal_wk_fst{
+        border-top-style: none;
+        border-bottom-style: solid;
+        border-width: 2px;
+        border-color: #07A2A1;
+        min-height: 18vh;
+        overflow: hidden;
+    }
+
+    .cal_wk{
+        border-top-style: none;
+        border-bottom-style: solid;
+        border-width: 2px;
+        border-color: #07A2A1;
+        min-height: 18vh;
+        overflow: hidden;
+    }
+
+    .cal_wk_last{
+        border-top-style: none;
+        border-bottom-style: solid;
+        border-width: 1px;
+        border-color: #07A2A1;
+        min-height: 18vh;
+        overflow: hidden;
+
+    }
+
+    .cal_sun{
+        border-right-style: solid;
+        border-width: 1px;
+        border-color: #07A2A1;
+
+    }
+
+    .cal_wkday{
+        border-right-style: solid;
+        border-left-style: solid;
+        border-width: 1px;
+        border-color: #07A2A1;
+
+    }
+
+    .cal_sat{
+        border-left-style: solid;
+        border-width: 1px;
+        border-color: #07A2A1;
+    }
+
+    .cal_content{
+        max-height: 13vh;
+        margin-top: 0.5rem;
+        padding-bottom: .5rem;
+    }
+
+
+
+}
+
+
 
 .cal_key{
     width: 100%;

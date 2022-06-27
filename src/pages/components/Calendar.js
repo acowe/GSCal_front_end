@@ -78,48 +78,53 @@ function Calendar(props){
     return(
         <div className={"mx-md-5 mx-3 my-3 my-md-4 mt-lg-4 mb-lg-3 pb-2 pb-lg-4 pb-xl-3 cal_card"}>
             <h1 className={"cal_head"}>{month + " " + props.year}</h1>
-            <Row className={"mx-0 mt-2 mt-sm-3 mt-md-3 px-0 cal_days"}>
-                <Col style={{width:"14.28%"}} className={"px-0"}>
-                    <p className={"my-0 px-1 fs-6 dow_full"}>sunday</p>
-                    <p className={"my-0 px-1 fs-6 dow_short"}>sun</p>
-                </Col>
-                <Col style={{width:"14.28%"}} className={"px-0"}>
-                    <p className={"my-0 px-1 fs-6 dow_full"}>monday</p>
-                    <p className={"my-0 px-1 fs-6 dow_short"}>mon</p>
-                </Col>
-                <Col style={{width:"14.28%"}} className={"px-0"}>
-                    <p className={"my-0 px-1 fs-6 dow_full"}>tuesday</p>
-                    <p className={"my-0 px-1 fs-6 dow_short"}>tues</p>
-                </Col>
-                <Col style={{width:"14.28%"}} className={"px-0"}>
-                    <p className={"my-0 px-1 fs-6 dow_full"}>wednesday</p>
-                    <p className={"my-0 px-1 fs-6 dow_short"}>wed</p>
-                </Col>
-                <Col style={{width:"14.28%"}} className={"px-0"}>
-                    <p className={"my-0 px-1 fs-6 dow_full"}>thursday</p>
-                    <p className={"my-0 px-1 fs-6 dow_short"}>thu</p>
-                </Col>
-                <Col style={{width:"14.28%"}} className={"px-0"}>
-                    <p className={"my-0 px-1 fs-6 dow_full"}>friday</p>
-                    <p className={"my-0 px-1 fs-6 dow_short"}>fri</p>
-                </Col>
-                <Col style={{width:"14.28%"}} className={"px-0"}>
-                    <p className={"my-0 px-1 fs-6 dow_full"}>saturday</p>
-                    <p className={"my-0 px-1 fs-6 dow_short"}>sat</p>
-                </Col>
-            </Row>
-            <Container className={"mx-sm-0 px-0 cal"}>
-                <CalWeek month={props.month_num} year={props.year} dayInMonth={numDayInMonth} wk_type={"cal_wk_fst"} wkNum={1} wk_of={props.current_wk_start}
-                         filter={filter[1]} eventOn={props.eventOn} enableEventOn={props.enableEventOn} eventOnFor={props.eventOnFor} selected={props.selected} />
-                <CalWeek month={props.month_num} year={props.year} dayInMonth={numDayInMonth} wk_type={"cal_wk snd"} wkNum={8} wk_of={props.current_wk_start+7}
-                         filter={filter[1]} eventOn={props.eventOn} enableEventOn={props.enableEventOn} eventOnFor={props.eventOnFor} selected={props.selected}/>
-                <CalWeek month={props.month_num} year={props.year} dayInMonth={numDayInMonth} wk_type={"cal_wk trd"} wkNum={15} wk_of={props.current_wk_start+14}
-                         filter={filter[1]} eventOn={props.eventOn} enableEventOn={props.enableEventOn} eventOnFor={props.eventOnFor} selected={props.selected}/>
-                <CalWeek month={props.month_num} year={props.year} dayInMonth={numDayInMonth} wk_type={"cal_wk frt"} wkNum={22} wk_of={props.current_wk_start+21}
-                         filter={filter[1]} eventOn={props.eventOn} enableEventOn={props.enableEventOn} eventOnFor={props.eventOnFor} selected={props.selected}/>
-                <CalWeek month={props.month_num} year={props.year} dayInMonth={numDayInMonth} wk_type={"cal_wk_last"} wkNum={29} wk_of={props.current_wk_start+28}
-                         filter={filter[1]} eventOn={props.eventOn} enableEventOn={props.enableEventOn} eventOnFor={props.eventOnFor} selected={props.selected}/>
-            </Container>
+            <div className={"cal_stuff_immovable"}>
+                <div className={"cal_stuff_movable"}>
+                    <Row className={"mx-0 mt-1 mt-sm-3 mt-md-3 px-0 cal_days"}>
+                        <Col style={{width:"14.28%"}} className={"px-0"}>
+                            <p className={"my-0 px-1 fs-6 dow_full"}>sunday</p>
+                            <p className={"my-0 px-1 fs-6 dow_short"}>sun</p>
+                        </Col>
+                        <Col style={{width:"14.28%"}} className={"px-0"}>
+                            <p className={"my-0 px-1 fs-6 dow_full"}>monday</p>
+                            <p className={"my-0 px-1 fs-6 dow_short"}>mon</p>
+                        </Col>
+                        <Col style={{width:"14.28%"}} className={"px-0"}>
+                            <p className={"my-0 px-1 fs-6 dow_full"}>tuesday</p>
+                            <p className={"my-0 px-1 fs-6 dow_short"}>tues</p>
+                        </Col>
+                        <Col style={{width:"14.28%"}} className={"px-0"}>
+                            <p className={"my-0 px-1 fs-6 dow_full"}>wednesday</p>
+                            <p className={"my-0 px-1 fs-6 dow_short"}>wed</p>
+                        </Col>
+                        <Col style={{width:"14.28%"}} className={"px-0"}>
+                            <p className={"my-0 px-1 fs-6 dow_full"}>thursday</p>
+                            <p className={"my-0 px-1 fs-6 dow_short"}>thu</p>
+                        </Col>
+                        <Col style={{width:"14.28%"}} className={"px-0"}>
+                            <p className={"my-0 px-1 fs-6 dow_full"}>friday</p>
+                            <p className={"my-0 px-1 fs-6 dow_short"}>fri</p>
+                        </Col>
+                        <Col style={{width:"14.28%"}} className={"px-0"}>
+                            <p className={"my-0 px-1 fs-6 dow_full"}>saturday</p>
+                            <p className={"my-0 px-1 fs-6 dow_short"}>sat</p>
+                        </Col>
+                    </Row>
+                    <Container className={"mx-sm-0 px-0 cal"}>
+                        <CalWeek month={props.month_num} year={props.year} dayInMonth={numDayInMonth} wk_type={"cal_wk_fst"} wkNum={1} wk_of={props.current_wk_start}
+                                 filter={filter[1]} eventOn={props.eventOn} enableEventOn={props.enableEventOn} eventOnFor={props.eventOnFor} selected={props.selected} />
+                        <CalWeek month={props.month_num} year={props.year} dayInMonth={numDayInMonth} wk_type={"cal_wk snd"} wkNum={8} wk_of={props.current_wk_start+7}
+                                 filter={filter[1]} eventOn={props.eventOn} enableEventOn={props.enableEventOn} eventOnFor={props.eventOnFor} selected={props.selected}/>
+                        <CalWeek month={props.month_num} year={props.year} dayInMonth={numDayInMonth} wk_type={"cal_wk trd"} wkNum={15} wk_of={props.current_wk_start+14}
+                                 filter={filter[1]} eventOn={props.eventOn} enableEventOn={props.enableEventOn} eventOnFor={props.eventOnFor} selected={props.selected}/>
+                        <CalWeek month={props.month_num} year={props.year} dayInMonth={numDayInMonth} wk_type={"cal_wk frt"} wkNum={22} wk_of={props.current_wk_start+21}
+                                 filter={filter[1]} eventOn={props.eventOn} enableEventOn={props.enableEventOn} eventOnFor={props.eventOnFor} selected={props.selected}/>
+                        <CalWeek month={props.month_num} year={props.year} dayInMonth={numDayInMonth} wk_type={"cal_wk_last"} wkNum={29} wk_of={props.current_wk_start+28}
+                                 filter={filter[1]} eventOn={props.eventOn} enableEventOn={props.enableEventOn} eventOnFor={props.eventOnFor} selected={props.selected}/>
+                    </Container>
+                </div>
+            </div>
+
             <CalCourses courseList={courseList} changeFilter={changeFilter} filter={filter[0]}/>
         </div>
 
