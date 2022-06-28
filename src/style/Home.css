@@ -204,6 +204,10 @@
 
 
 @media (max-width:576px){
+    .header{
+        padding-left: .8rem;
+    }
+
     .cal_card{
         padding-top: 1.5rem;
         padding-bottom: 1.5rem;
@@ -350,14 +354,13 @@
     padding-left: 0rem;
     list-style: none;
     max-width: 6.2rem;
-    font-size: smaller;
     overflow-y: hidden;
 }
 
 .cal_content ul li{
     width: 100%;
     margin-bottom: 0.25rem;
-    font-size: small;
+    font-size: smaller;
     padding-left: 1.25rem;
     padding-right: 1.25rem;
     padding-top: .3rem;
@@ -374,11 +377,15 @@
 }
 
 
-
-
 .to_do_text{
     margin-bottom: 0;
     overflow-x: scroll;
+}
+
+
+
+.event_card_alt_true{
+    display: none;
 }
 
 @media (min-width: 451px) and (max-width: 625px){
@@ -400,87 +407,7 @@
     }
 }
 
-@media (max-width: 450px) {
 
-    .cal_stuff_immovable{
-        margin-top: 0.5rem;
-        height: 40vh;
-        overflow-x: scroll;
-        overflow-y: scroll;
-    }
-    .cal_stuff_movable {
-        width: 230%;
-        position: relative;
-    }
-
-    .cal_days{
-        background-color: white;
-        position: sticky;
-        top:-1px;
-    }
-
-    .darkMode_true .cal_days{
-        background-color: #394444;
-    }
-
-    .cal_wk_fst{
-        border-top-style: none;
-        border-bottom-style: solid;
-        border-width: 2px;
-        border-color: #07A2A1;
-        min-height: 18vh;
-        overflow: hidden;
-    }
-
-    .cal_wk{
-        border-top-style: none;
-        border-bottom-style: solid;
-        border-width: 2px;
-        border-color: #07A2A1;
-        min-height: 18vh;
-        overflow: hidden;
-    }
-
-    .cal_wk_last{
-        border-top-style: none;
-        border-bottom-style: solid;
-        border-width: 1px;
-        border-color: #07A2A1;
-        min-height: 18vh;
-        overflow: hidden;
-
-    }
-
-    .cal_sun{
-        border-right-style: solid;
-        border-width: 1px;
-        border-color: #07A2A1;
-
-    }
-
-    .cal_wkday{
-        border-right-style: solid;
-        border-left-style: solid;
-        border-width: 1px;
-        border-color: #07A2A1;
-
-    }
-
-    .cal_sat{
-        border-left-style: solid;
-        border-width: 1px;
-        border-color: #07A2A1;
-    }
-
-    .cal_content{
-        max-height: 13vh;
-        margin-top: 0.5rem;
-        padding-bottom: .5rem;
-    }
-
-
-
-}
 
 
 
@@ -519,7 +446,6 @@
         font-size: 1.2rem;
     }
 }
-
 
 .courses{
     display: inline;
@@ -599,8 +525,6 @@
     padding-right: 1.7rem;
     background-color: #b5c5c5;
 }
-
-
 
 .list_col{
     height: 100vh;
@@ -686,9 +610,9 @@
     background-color: #597977;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 450px) {
     .task_card{
-        height: 95vh;
+        height: 87vh;
     }
     .task_card_contents{
         overflow-y: scroll;
@@ -964,13 +888,14 @@
     padding-bottom: 0.5rem;
     padding-top: 0.75rem;
     max-width: 280px;
-    z-index: 1;
+    z-index: 3;
     background-color: white;
     top:25%;
     /*border: solid #c3cace 1px;*/
     border-radius: 3px;
     box-shadow: 3px 3px 2px 3px rgba(0, 0, 0, 0.2);
     cursor: default;
+    overflow: visible;
 }
 
 
@@ -1079,7 +1004,7 @@
         left: 62%;
     }
 }
-@media (min-width: 401px) and (max-width:576px){
+@media (min-width: 451px) and (max-width:576px){
     .cal_wk_fst .event_card_true{
         top: 13%;
     }
@@ -1125,24 +1050,24 @@
 }
 
 
-@media (max-width: 400px){
+@media (max-width: 450px){
     .cal_wk_fst .event_card_true{
-        top: 13%;
+        top:-8%;
     }
     .snd .event_card_true{
-        top: 23%
+
     }
 
     .trd .event_card_true{
-        top: 33%
+
     }
 
     .frt .event_card_true{
-        top: 43%;
+
     }
 
     .cal_wk_last .event_card_true{
-        top:53%
+
     }
 
     .monday{
@@ -1180,6 +1105,117 @@
 
 .assign_title{
     overflow-wrap: break-word;
+}
+
+@media (max-width: 450px) {
+
+
+    .cal_stuff_immovable{
+        position: relative;
+        margin-top: 0.5rem;
+        height: 22vh;
+        overflow-x: scroll;
+        overflow-y: scroll;
+    }
+    .cal_stuff_movable {
+        width: 230%;
+        position: relative;
+    }
+
+    .cal_days{
+        background-color: white;
+        position: sticky;
+        top:-1px;
+        z-index: 1;
+    }
+
+    .darkMode_true .cal_days{
+        background-color: #394444;
+    }
+
+    .cal_wk_fst{
+        border-top-style: none;
+        border-bottom-style: solid;
+        border-width: 2px;
+        border-color: #07A2A1;
+        min-height: 18vh;
+        overflow: hidden;
+    }
+
+    .cal_wk{
+        border-top-style: none;
+        border-bottom-style: solid;
+        border-width: 2px;
+        border-color: #07A2A1;
+        min-height: 18vh;
+        overflow: hidden;
+    }
+
+    .cal_wk_last{
+        border-top-style: none;
+        border-bottom-style: solid;
+        border-width: 1px;
+        border-color: #07A2A1;
+        min-height: 18vh;
+        overflow: hidden;
+
+    }
+
+    .cal_sun{
+        border-right-style: solid;
+        border-width: 1px;
+        border-color: #07A2A1;
+
+    }
+
+    .cal_wkday{
+        border-right-style: solid;
+        border-left-style: solid;
+        border-width: 1px;
+        border-color: #07A2A1;
+
+    }
+
+    .cal_sat{
+        border-left-style: solid;
+        border-width: 1px;
+        border-color: #07A2A1;
+    }
+
+    .cal_content{
+        max-height: 13vh;
+        margin-top: 0.5rem;
+        padding-bottom: .5rem;
+    }
+
+    .cal_content ul {
+        font-size: large;
+    }
+
+    .event_card_alt_false{
+        display: none;
+    }
+
+    .event_card_alt_true{
+        display: block;
+        background-color: white;
+        margin-bottom: 1rem;
+        margin-left: 1rem;
+        margin-right: 1rem;
+        border-radius: 10px;
+        box-shadow: 15px 15px 20px #057a77;
+    }
+
+    .darkMode_true .event_card_alt_true{
+        background-color: #394444;
+        color: #bcd6d5;
+        box-shadow: none;
+    }
+
+    .event_card_false, .event_card_true{
+        display: none;
+    }
+
 }
 
 

@@ -35,7 +35,7 @@ function day_to_num(d){
         case "friday":
             return 5;
             break;
-        case "sunday":
+        case "saturday":
             return 6;
             break;
         default:
@@ -47,12 +47,13 @@ function TaskListEntry(props){
     const current = new Date(), today = (current.getDay() == 0? 7: current.getDay());
     const weekOfArr = [props.current_wk_start, props.month_num, props.year];
     const entryDayNum = day_to_num(props.dayOfWeek);
-    const dayPassed = (entryDayNum <= today? true: false);
+    const dayPassed = (entryDayNum < today? true: false);
+    const isToday = (entryDayNum == today? true : false);
 
     async function getDues(){
         const colRef = collection(db, "GSCalTestCol", "testCalData", "testWeeks");
         const q = query(colRef, where("DMY","==", weekOfArr));
-        const querySnap = await getDocs(q).then(console.log("success")).catch(e => console.log(e));
+        const querySnap = await getDocs(q);
         const isEmptyQ = querySnap.empty;
         if (!isEmptyQ){
             let week =  querySnap.docs.map(doc => doc.id)[0].toString();
@@ -79,15 +80,23 @@ function TaskListEntry(props){
     const listType = (courses.length <= 0? "none_type" : "task_day_list");
 
     function isPast(time){
-        if (dayPassed){
-            if(time.getHours() < current.getHours()){
-               if(time.getMinutes() < current.getMinutes()){
-                   return true;
-               }
+        if (isToday){
+            console.log("yep!")
+            if (time.getHours() < current.getHours()){
+                if (time.getMinutes() < current.getMinutes()){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+            else{
+                return false;
             }
         }
-        return false;
-    }
+        return dayPassed;
+    };
+
     const displayDue =
         dueTimes.map((t,i) =>
         {

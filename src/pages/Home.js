@@ -92,15 +92,21 @@ function Home(){
     function enableEventOn(id){
         setSelectedEvent(id);
         setEventOn(true);
+
     }
 
     function disableEventOn(){
         if(eventOn){
             let element1 = document.getElementById(selectedEvent);
             let element2 = document.getElementById("d"+selectedEvent);
-            element1.classList.remove("selected")
+            const title_elem = document.getElementById("aec_title_default"),
+                course_elem = document.getElementById("aec_course"),
+                due_elem = document.getElementById("aec_due");
             element2.classList.remove("event_card_true");
             element2.classList.add("event_card_false");
+            title_elem.innerText="Select an event to view its details";
+            course_elem.innerText = "";
+            due_elem.innerText = "";
             setEventOn(false);
         }
     }
@@ -116,6 +122,11 @@ function Home(){
                     <Col lg={8} className={"px-0 cal_col"}>
                         <Calendar month_num={month_num} year={year} current_wk_start={current_wk_start} num_to_month={num_to_month}
                                   eventOn={eventOn} enableEventOn={enableEventOn} eventOnFor={eventOnFor} selected={selectedEvent}/>
+                        <div id={"alt_event_card"} className={"pt-3 pb-2 ps-3 pe-1 event_card_alt_true"}>
+                            <h3 id={"aec_title_default"} className={"text-start"}>Select an event to view its details</h3>
+                            <p id={"aec_course"} className={"text-start fs-5 mb-0"}></p>
+                            <p id={"aec_due"} className={"text-start fs-5"}></p>
+                        </div>
                         <a id="cal_dnload" href="test_cal.ics" download="test_calendar">
                             <button style={{width:"40%"}} className={"shadow-none btn btn-primary"}>
                                 download calendar

@@ -95,18 +95,29 @@ function CalDay(props){
         }
     }
 
-    function eventOn(id, dayNum){;
+    function eventOn(id,ind){;
         if (!props.eventOn){
+            let due = dues[ind];
+            let time = new Date(due.seconds*1000);
+            let month = num_to_month(time.getMonth()+1);
+            let isAm = (time.getHours() < 12)
+            let hour = (isAm ? time.getHours() : time.getHours() - 12);
+            let min = (time.getMinutes() < 10 ? "0" + time.getMinutes() : time.getMinutes());
+            let ampm = (isAm ? "AM": "PM");
             const element2 = document.getElementById("d"+id);
+            const title_elem = document.getElementById("aec_title_default"),
+                course_elem = document.getElementById("aec_course"),
+                due_elem = document.getElementById("aec_due");
             element2.classList.remove("event_card_false");
             element2.classList.add("event_card_true");
+            title_elem.innerHTML = assignments[ind];
+            course_elem.innerHTML = "Course: " + courses[ind];
+            due_elem.innerHTML = "Due: " + month + " " + props.day_of_month + ", " + hour +  ":" + min + " " + ampm;
             props.enableEventOn(id);
+
         }
     }
 
-    function displayEC(){
-       const element = document.getElementById()
-    }
 
     const current = new Date();
     const date = current.getDate();
@@ -130,28 +141,29 @@ function CalDay(props){
             selDay = (select.length == 0 ? -1 : Number(select.split("a")[0])),
             selAssign = (select.length == 0 ? -1 : Number(select.split("a")[1]));
         let listId = dayNum.toString()+"a"+i.toString();
+        let currentInd = i;
 
         if (courseFilter == ""){
             if(dayNum === selDay && i === selAssign){
                 return (<li id={listId} key={i} className={course + " eventOn_false"}
-                            onClick={(e)=> eventOn(e.target.id,dayNum)} >
+                            onClick={(e)=> eventOn(e.target.id,i)} >
                     <div id={"d"+listId} className={props.day_of_week + " event_card_false text-start text-wrap"}>
                         <h5>{a}</h5>
                         <p className={"my-0 text-start fs-6"}>Course: {course}</p>
                         <p className={"mb-1 text-start fs-6"}>Due: {month + " " + props.day_of_month + ", " + hour +  ":" + min + " " + ampm}</p>
                     </div>
-                    <p className={"to_do_text"} onClick={(e)=> eventOn(listId,dayNum)}>{a}</p>
+                    <p className={"to_do_text"} onClick={(e)=> eventOn(listId,currentInd)}>{a}</p>
                 </li>);
             }
             else{
                 return (<li id={listId} key={i} className={course + " eventOn_"+props.eventOn.toString()}
-                            onClick={(e)=> eventOn(e.target.id,dayNum)} >
+                            onClick={(e)=> eventOn(e.target.id,i)} >
                     <div id={"d"+listId} className={props.day_of_week + " event_card_false text-start text-wrap"}>
                         <h5>{a}</h5>
                         <p className={"my-0 text-start fs-6"}>Course: {course}</p>
                         <p className={"mb-1 text-start fs-6"}>Due: {month + " " + props.day_of_month + ", " + hour +  ":" + min + " " + ampm}</p>
                     </div>
-                    <p className={"to_do_text"} onClick={(e)=> eventOn(listId,dayNum)}>{a}</p>
+                    <p className={"to_do_text"} onClick={(e)=> eventOn(listId,currentInd)}>{a}</p>
                 </li>);
             }
         }
@@ -159,13 +171,13 @@ function CalDay(props){
             if (course == courseFilter){
                 if(dayNum === selDay && i === selAssign){
                     return (<li id={listId} key={i} className={course + " eventOn_false"}
-                                onClick={(e)=> eventOn(e.target.id,dayNum)} >
+                                onClick={(e)=> eventOn(e.target.id,i)} >
                         <div id={"d"+listId} className={props.day_of_week + " event_card_false text-start text-wrap"}>
                             <h5 >{a}</h5>
                             <p className={"my-0 text-start fs-6"}>Course: {course}</p>
                             <p className={"mb-1 text-start fs-6"}>Due: {month + " " + props.day_of_month + ", " + hour +  ":" + min + " " + ampm}</p>
                         </div>
-                        <p className={"to_do_text"} onClick={(e)=> eventOn(listId,dayNum)}>{a}</p>
+                        <p className={"to_do_text"} onClick={(e)=> eventOn(listId,currentInd)}>{a}</p>
                     </li>);
                 }
                 else{
@@ -176,7 +188,7 @@ function CalDay(props){
                             <p className={"my-0 text-start fs-6"}>Course: {course}</p>
                             <p className={"mb-1 text-start fs-6"}>Due: {month + " " + props.day_of_month + ", " + hour +  ":" + min + " " + ampm}</p>
                         </div>
-                        <p className={"to_do_text"} onClick={(e)=> eventOn(listId,dayNum)}>{a}</p>
+                        <p className={"to_do_text"} onClick={(e)=> eventOn(listId,currentInd)}>{a}</p>
                     </li>);
                 }
             }

@@ -4,11 +4,11 @@ function NavHead(props){
 
     return(
         <Row className={"py-4 header"}>
-            <Col xs={2} sm={2} md={3} lg={2} className={"h_other"}>
+            <Col xs={0} sm={2} md={3} lg={2} className={"h_other"}>
                 <a className={"my-0 px-2 h_other_text fs-5 text-decoration-none"} onClick={(e)=>props.enableSidebar()}>
                     Hello Student!</a>
             </Col>
-            <Col xs={8} sm={8} md={6} lg={8} className={"d-flex justify-content-center align-middle"}>
+            <Col xs={10} sm={8} md={6} lg={8} className={"d-flex justify-content-sm-center align-middle ps-sm-0"}>
                 <h5 className={"my-0 fs-4 fw-bold h_title"}>gradescope calendar</h5>
             </Col>
             <Col xs={2} sm={2} md={3} lg={2} className={"h_other"}>
