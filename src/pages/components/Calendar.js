@@ -59,6 +59,7 @@ function Calendar(props){
     const month = props.num_to_month(props.month_num);
     const numDayInMonth = daysInMonth(props.month_num, props.year);
     const [filter, setCourseFilter] = useState(["",""]);
+    const [weekPos, setWeekPos] = useState(0)
 
     function changeFilter(elem_id){
         if(elem_id == filter[0]){
@@ -75,11 +76,25 @@ function Calendar(props){
         }
     }
 
+    function changeWeekPos(dir){
+        if(dir == "up"){
+            if (weekPos > 0){
+                setWeekPos(weekPos-1);
+            }
+        }
+        else{
+            if(weekPos < 4){
+                setWeekPos(weekPos + 1);
+            }
+        }
+    }
+
+
     return(
         <div className={"mx-md-5 mx-3 my-3 my-md-4 mt-lg-4 mb-lg-3 pb-2 pb-lg-4 pb-xl-3 cal_card"}>
             <h1 className={"cal_head"}>{month + " " + props.year}</h1>
             <div className={"cal_stuff_immovable"}>
-                <div className={"cal_stuff_movable"}>
+                <div className={"cal_stuff_movable down_"+weekPos.toString()}>
                     <Row className={"mx-0 mt-1 mt-sm-3 mt-md-3 px-0 cal_days"}>
                         <Col style={{width:"14.28%"}} className={"px-0"}>
                             <p className={"my-0 px-1 fs-6 dow_full"}>sunday</p>
@@ -123,8 +138,12 @@ function Calendar(props){
                                  filter={filter[1]} eventOn={props.eventOn} enableEventOn={props.enableEventOn} eventOnFor={props.eventOnFor} selected={props.selected}/>
                     </Container>
                 </div>
-            </div>
 
+            </div>
+            <div className={"cal_up_down"}>
+                <div className={"cud_up"} onClick={(e)=> changeWeekPos("up")}><i className="fa-solid fa-angle-up"></i></div>
+                <div className={"cud_down"} onClick={(e)=> changeWeekPos("down")}><i className="fa-solid fa-angle-down"></i></div>
+            </div>
             <CalCourses courseList={courseList} changeFilter={changeFilter} filter={filter[0]}/>
         </div>
 

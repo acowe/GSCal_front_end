@@ -904,6 +904,9 @@
     color: #bcd6d5;
 }
 
+.cal_up_down{
+    display: none;
+}
 
 @media (min-height: 830px) {
     .cal_wk_fst .event_card_true{
@@ -1111,18 +1114,71 @@
 
 
     .cal_stuff_immovable{
-        position: relative;
+
         margin-top: 0.5rem;
-        height: 22vh;
+        height: 180px;
         overflow-x: scroll;
-        overflow-y: scroll;
+        overflow-y: hidden ;
+
     }
     .cal_stuff_movable {
-        width: 230%;
         position: relative;
+        width: 230%;
+
     }
 
-    .cal_days{
+    .cal_up_down{
+        display: block;
+        margin-left: auto;
+        margin-right: 0;
+        width:33%;
+        height:auto;
+        margin-bottom: 0.3rem;
+
+
+    }
+
+    .cud_up{
+        background-color: #bec9c9;
+        display: inline;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-top: 0.15rem;
+        padding-bottom: 0.15rem;
+        margin-right: 0.2rem;
+
+
+
+    }
+
+    .cud_down{
+        background-color: #bec9c9;
+        display: inline;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-top: 0.15rem;
+        padding-bottom: 0.15rem;
+    }
+
+    .down_0{
+        top:0;
+    }
+
+    .down_1{
+        top:-152px;
+    }
+
+    .down_2{
+        top:-300px;
+    }
+    .down_3{
+        top:-448px;
+    }
+    .down_4{
+        top:-596px;
+    }
+
+    .cal_stuff_movable .cal_days{
         background-color: white;
         position: sticky;
         top:-1px;
@@ -1138,7 +1194,7 @@
         border-bottom-style: solid;
         border-width: 2px;
         border-color: #07A2A1;
-        min-height: 18vh;
+        min-height: 148px;
         overflow: hidden;
     }
 
@@ -1147,7 +1203,7 @@
         border-bottom-style: solid;
         border-width: 2px;
         border-color: #07A2A1;
-        min-height: 18vh;
+        min-height: 148px;
         overflow: hidden;
     }
 
@@ -1156,7 +1212,7 @@
         border-bottom-style: solid;
         border-width: 1px;
         border-color: #07A2A1;
-        min-height: 18vh;
+        min-height: 148px;
         overflow: hidden;
 
     }

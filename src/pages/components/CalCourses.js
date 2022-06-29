@@ -22,7 +22,7 @@ function CalCourses(props){
     });
 
     return(
-        <div className={"my-3 ps-0 cal_key"}>
+        <div className={"mb-3 mt-1 mt-sm-3 ps-0 cal_key"}>
             <div className={"text-start mb-0 pe-0 key"}>
                 <h4 className={"mb-0 key_text"}>View by class:</h4></div>
             <div className={"courses"}>
