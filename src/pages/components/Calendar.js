@@ -53,9 +53,9 @@ function daysInMonth (month, year) { // Use 1 for January, 2 for February, etc.
 
 
 function Calendar(props){
-    const courseList = ["chem", "math", "phys", "bio", "csci"];
+    const courseList = ["chem", "math", "phys", "bio", "csci","engr","other"];
     const courseNameMap = [["",""], ["chem", "HMC Chemistry 23B SP22"],["math", "HMC Math 73 SP22"],
-        ["phys", "HMC Phys 24 Sec 1-8 SP22"], ["bio", "Bio 52"], ["csci", "CS 60 Spring 2020"]];
+        ["phys", "HMC Phys 24 Sec 1-8 SP22"], ["bio", "Bio 52"], ["csci", "CS 60 Spring 2020"], ["engr", "E79 Fall 2020"], ["other", "HMC CS 124 FA21"]];
     const month = props.num_to_month(props.month_num);
     const numDayInMonth = daysInMonth(props.month_num, props.year);
     const [filter, setCourseFilter] = useState(["",""]);
