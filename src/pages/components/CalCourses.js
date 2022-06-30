@@ -28,6 +28,7 @@ function CalCourses(props){
             <div className={"courses"}>
                 <ul className={"ps-0"}>
                     {displayCourses}
+
                 </ul>
             </div>
         </div>

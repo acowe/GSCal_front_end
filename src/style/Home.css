@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'Anonymous Pro'; /*a name to be used later*/
-    src: url('http://domain.com/fonts/font.ttf'); /*URL to font*/
+    src: url("../../public/anonymous-pro-cufonfonts/Anonymous_Pro.ttf"); /*URL to font*/
 }
 
 .gscal{
@@ -524,6 +524,14 @@
     padding-left: 1.7rem;
     padding-right: 1.7rem;
     background-color: #b5c5c5;
+}
+
+.course_6{
+    text-align: center;
+    padding-left: 1.7rem;
+    padding-right: 1.7rem;
+    background-color: #FEBE11;
+
 }
 
 .list_col{
