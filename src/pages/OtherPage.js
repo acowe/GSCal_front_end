@@ -94,24 +94,8 @@ function OtherPage(){
 
         <div>
             <div className={"mb-5"}>
-                <h1 className={"mt-5 mb-4"}>Heyo! This is blank page representing a new page to be integrated.</h1>
+                <h1 className={"mt-5 mb-4"}>Hello! This is blank page representing the weekly over page to be integrated.</h1>
                 <h3 className={"mb-4"}>(It's coming out soon, I promise!)</h3>
-                <h4 className={"mb-3"}>In the meantime, try this link!</h4>
-                <h5><a href={"https://acowe.github.io/gscal_front_end/#/home"}>GSCal on gh-pages (takes you to the deployed version of GSCal)</a></h5>
-            </div>
-
-           <div>
-               <h3>Otherwise, we'll work with a database (Google Firebase) on this page!</h3>
-               <Button className={"w-25 mb-1"} onClick={(e)=>{getStuff()}}>Press me to see stuff!</Button>
-               <h4>Courses:</h4>
-               <ul>
-                   {displayNames}
-               </ul>
-               <ul>
-                   {displayTimes}
-               </ul>
-               <p>{displayThing}</p>
-
            </div>
 
 
