@@ -519,14 +519,14 @@
     background-color: #59d7dc;
 }
 
-.course_5{
+.course_5, .CS60{
     text-align: center;
     padding-left: 1.7rem;
     padding-right: 1.7rem;
     background-color: #b5c5c5;
 }
 
-.course_6{
+.course_6, .E79{
     text-align: center;
     padding-left: 1.7rem;
     padding-right: 1.7rem;
@@ -534,7 +534,7 @@
 
 }
 
-.course_7{
+.course_7 , .CS124{
     text-align: center;
     padding-left: 1.7rem;
     padding-right: 1.7rem;

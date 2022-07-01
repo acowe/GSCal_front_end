@@ -69,7 +69,7 @@ function CalDay(props){
             await getAssignmentsForDay(week);
         }
         else{
-            await getAssignmentsForDay("week_2","");
+            await getAssignmentsForDay("week_3","");
         }
     }
     async function getAssignmentsForDay(week){
@@ -101,7 +101,7 @@ function CalDay(props){
             let time = new Date(due.seconds*1000);
             let month = num_to_month(time.getMonth()+1);
             let isAm = (time.getHours() < 12)
-            let hour = (isAm ? time.getHours() : time.getHours() - 12);
+            let hour = (time.getHours() <= 12? time.getHours() : time.getHours() - 12);
             let min = (time.getMinutes() < 10 ? "0" + time.getMinutes() : time.getMinutes());
             let ampm = (isAm ? "AM": "PM");
             const element2 = document.getElementById("d"+id);
@@ -134,7 +134,7 @@ function CalDay(props){
         let time = new Date(due.seconds*1000);
         let month = num_to_month(time.getMonth()+1);
         let isAm = (time.getHours() < 12)
-        let hour = (isAm ? time.getHours() : time.getHours() - 12);
+        let hour = (time.getHours() <= 12 ? time.getHours() : time.getHours() - 12);
         let min = (time.getMinutes() < 10 ? "0" + time.getMinutes() : time.getMinutes());
         let ampm = (isAm ? "AM": "PM");
         let select = props.selected,
@@ -169,6 +169,7 @@ function CalDay(props){
         }
         else{
             if (course == courseFilter){
+
                 if(dayNum === selDay && i === selAssign){
                     return (<li id={listId} key={i} className={course + " eventOn_false"}
                                 onClick={(e)=> eventOn(e.target.id,i)} >
@@ -194,6 +195,7 @@ function CalDay(props){
             }
         }
     });
+
 
     useEffect(() =>
         {

@@ -10,12 +10,13 @@ import SideBar from "./components/SideBar";
 const current = new Date();
 const date = current.getDate();
 const day = current.getDay();
-const current_wk_start = date - day;
 const month_num = current.getMonth()+1;
 const month = num_to_month(month_num);
 const year = current.getFullYear();
+const current_wk_start = date-day;
 
-console.log(day);
+console.log(current_wk_start);
+
 function num_to_month(n){
     switch (n) {
         case 1:
@@ -58,6 +59,10 @@ function num_to_month(n){
             return "month";
     }
 }
+
+
+
+
 
 function Home(){
     const [sidebarOn, setSidebarOn] = useState(false);

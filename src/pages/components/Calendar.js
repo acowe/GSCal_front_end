@@ -55,9 +55,10 @@ function daysInMonth (month, year) { // Use 1 for January, 2 for February, etc.
 function Calendar(props){
     const courseList = ["chem", "math", "phys", "bio", "csci","engr","other"];
     const courseNameMap = [["",""], ["chem", "HMC Chemistry 23B SP22"],["math", "HMC Math 73 SP22"],
-        ["phys", "HMC Phys 24 Sec 1-8 SP22"], ["bio", "Bio 52"], ["csci", "CS 60 Spring 2020"], ["engr", "E79 Fall 2020"], ["other", "HMC CS 124 FA21"]];
+        ["phys", "HMC Phys 24 Sec 1-8 SP22"], ["bio", "Bio 52"], ["csci", "CS60 Spring 2020"], ["engr", "HMC E79 Fall 2020"], ["other", "HMC CS124 FA21"]];
     const month = props.num_to_month(props.month_num);
     const numDayInMonth = daysInMonth(props.month_num, props.year);
+    const numDayInPrevMonth = (props.month_num == 1? daysInMonth(12, props.year - 1) : daysInMonth(props.month_num-1, props.year))
     const [filter, setCourseFilter] = useState(["",""]);
     const [weekPos, setWeekPos] = useState(0)
 
@@ -127,15 +128,20 @@ function Calendar(props){
                     </Row>
                     <Container className={"mx-sm-0 px-0 cal"}>
                         <CalWeek month={props.month_num} year={props.year} dayInMonth={numDayInMonth} wk_type={"cal_wk_fst"} wkNum={1} wk_of={props.current_wk_start}
-                                 filter={filter[1]} eventOn={props.eventOn} enableEventOn={props.enableEventOn} eventOnFor={props.eventOnFor} selected={props.selected} />
+                                 filter={filter[1]} eventOn={props.eventOn} enableEventOn={props.enableEventOn} eventOnFor={props.eventOnFor} selected={props.selected}
+                                 dayInPrevMonth={numDayInPrevMonth}/>
                         <CalWeek month={props.month_num} year={props.year} dayInMonth={numDayInMonth} wk_type={"cal_wk snd"} wkNum={8} wk_of={props.current_wk_start+7}
-                                 filter={filter[1]} eventOn={props.eventOn} enableEventOn={props.enableEventOn} eventOnFor={props.eventOnFor} selected={props.selected}/>
+                                 filter={filter[1]} eventOn={props.eventOn} enableEventOn={props.enableEventOn} eventOnFor={props.eventOnFor} selected={props.selected}
+                                 dayInPrevMonth={numDayInPrevMonth}/>
                         <CalWeek month={props.month_num} year={props.year} dayInMonth={numDayInMonth} wk_type={"cal_wk trd"} wkNum={15} wk_of={props.current_wk_start+14}
-                                 filter={filter[1]} eventOn={props.eventOn} enableEventOn={props.enableEventOn} eventOnFor={props.eventOnFor} selected={props.selected}/>
+                                 filter={filter[1]} eventOn={props.eventOn} enableEventOn={props.enableEventOn} eventOnFor={props.eventOnFor} selected={props.selected}
+                                 dayInPrevMonth={numDayInPrevMonth}/>
                         <CalWeek month={props.month_num} year={props.year} dayInMonth={numDayInMonth} wk_type={"cal_wk frt"} wkNum={22} wk_of={props.current_wk_start+21}
-                                 filter={filter[1]} eventOn={props.eventOn} enableEventOn={props.enableEventOn} eventOnFor={props.eventOnFor} selected={props.selected}/>
+                                 filter={filter[1]} eventOn={props.eventOn} enableEventOn={props.enableEventOn} eventOnFor={props.eventOnFor} selected={props.selected}
+                                 dayInPrevMonth={numDayInPrevMonth}/>
                         <CalWeek month={props.month_num} year={props.year} dayInMonth={numDayInMonth} wk_type={"cal_wk_last"} wkNum={29} wk_of={props.current_wk_start+28}
-                                 filter={filter[1]} eventOn={props.eventOn} enableEventOn={props.enableEventOn} eventOnFor={props.eventOnFor} selected={props.selected}/>
+                                 filter={filter[1]} eventOn={props.eventOn} enableEventOn={props.enableEventOn} eventOnFor={props.eventOnFor} selected={props.selected}
+                                 dayInPrevMonth={numDayInPrevMonth}/>
                     </Container>
                 </div>
 

@@ -43,9 +43,25 @@ function day_to_num(d){
     }
 }
 
+
+function generateWeekOfArr(currentWk, month, year,){
+    let week = currentWk, mo = month, yr = year;
+    if(currentWk <= 0){
+        if(month == 1){
+            mo = 12;
+            yr = year - 1;
+        }
+        else {
+            mo = month - 1;
+        }
+        week = currentWk + new Date(yr, mo, 0).getDate();
+    }
+    return [week, mo, yr];
+}
+
 function TaskListEntry(props){
     const current = new Date(), today = (current.getDay() == 0? 7: current.getDay());
-    const weekOfArr = [props.current_wk_start, props.month_num, props.year];
+    const weekOfArr = generateWeekOfArr(props.current_wk_start, props.month_num, props.year);
     const entryDayNum = day_to_num(props.dayOfWeek);
     const dayPassed = (entryDayNum < today? true: false);
     const isToday = (entryDayNum == today? true : false);
@@ -81,7 +97,6 @@ function TaskListEntry(props){
 
     function isPast(time){
         if (isToday){
-            console.log("yep!")
             if (time.getHours() < current.getHours()){
                 if (time.getMinutes() < current.getMinutes()){
                     return true;
@@ -102,7 +117,7 @@ function TaskListEntry(props){
         {
             let time = new Date(t.seconds*1000);
             let isAm = (time.getHours() < 12 ? true : false)
-            let hour = (isAm ? time.getHours() : time.getHours() - 12);
+            let hour = (time.getHours() <= 12  ? time.getHours() : time.getHours() - 12);
             let min = (time.getMinutes() < 10 ? "0" + time.getMinutes() : time.getMinutes());
             let ampm = (isAm ? "AM": "PM");
             let passed = isPast(time);

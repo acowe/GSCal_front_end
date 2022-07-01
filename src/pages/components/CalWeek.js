@@ -17,19 +17,22 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 
-function generateWkDates(startDate, maxDay){
+function generateWkDates(startDate, maxDay, prevMaxDay){
     let wkDates = [];
     for (let i=0; i<7; i++){
         let dateEntry = startDate + i;
         if (dateEntry > maxDay){
             dateEntry = dateEntry-maxDay;
         }
+        if (dateEntry <= 0){
+            dateEntry = dateEntry + prevMaxDay;
+        }
         wkDates.push(dateEntry);
     }
     return wkDates;
 }
 
-function generateStart(startDate, maxDay, month, year){
+function generateStart(startDate, maxDay, prevMaxDay, month, year){
     let currentDay = startDate, currentMonth = month, currentYear = year;
     if (startDate > maxDay){
         currentDay = startDate - maxDay;
@@ -39,13 +42,20 @@ function generateStart(startDate, maxDay, month, year){
             currentYear = year + 1
         }
     }
+    if(startDate <= 0){
+        currentDay = startDate + prevMaxDay;
+        currentMonth = month - 1;
+        if (currentMonth < 1){
+            currentMonth = 12;
+            currentYear = year - 1;
+        }
+    }
     return [currentDay, currentMonth, currentYear];
 }
 
 function CalWeek(props){
-    const thisWeekDates = generateWkDates(props.wk_of,props.dayInMonth);
-    const startArr = generateStart(props.wk_of, props.dayInMonth, props.month, props.year);
-
+    const thisWeekDates = generateWkDates(props.wk_of,props.dayInMonth, props.dayInPrevMonth);
+    const startArr = generateStart(props.wk_of, props.dayInMonth, props.dayInPrevMonth, props.month, props.year);
 
     return(
         <Row className={"mx-0 " + props.wk_type}>
