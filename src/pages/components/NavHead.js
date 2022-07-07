@@ -1,5 +1,6 @@
 import {Container, Row, Col, Dropdown} from "react-bootstrap";
 
+// Generates display for navbar on the page
 function NavHead(props){
 
     return(

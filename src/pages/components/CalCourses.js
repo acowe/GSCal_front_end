@@ -1,24 +1,16 @@
-import {useState} from "react";
+
+// Generates display of course key at the bottom of the calendar
 function CalCourses(props){
+
+    // Current course filter variable
     const courseFilter = props.filter;
+
+    // Display variable to generate elements for the key
     const displayCourses = props.courseList.map((c,i) => {
-        if (courseFilter == ""){
-            return(<li id={c} className={"ms-3 me-3 py-2 course_"+(i+1)}
+        const tpStr = ((courseFilter == "" || c == courseFilter)? " " : " tp ");
+        return(<li id={c} className={"ms-3 me-3 py-2" + tpStr + "course_"+(i+1)}
                        onClick={(e) => props.changeFilter(e.target.id)}>
                 {c}</li>);
-        }
-        else{
-            if (c == courseFilter){
-                return(<li id={c} className={"ms-3 me-3 py-2 course_"+(i+1)}
-                           onClick={(e) => props.changeFilter(e.target.id)}>
-                    {c}</li>);
-            }
-            else {
-                return(<li id={c} className={"ms-3 me-3 py-2 tp course_"+(i+1)}
-                           onClick={(e) => props.changeFilter(e.target.id)}>
-                    {c}</li>);
-            }
-        }
     });
 
     return(
